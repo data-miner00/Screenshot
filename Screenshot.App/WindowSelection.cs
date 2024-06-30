@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Screenshot.App.Properties;
+using Screenshot.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +15,29 @@ namespace Screenshot.App
 {
     public partial class WindowSelection : Form
     {
+        private const string DefaultNamingStrategy = "timestamp";
+        private const string DefaultImageFileExtension = "bmp";
+        private static readonly IEnumerable<string> AllowedNamingStrategy = new List<string>
+        {
+            "timestamp",
+            "guid",
+        };
+
+        private readonly IOutputNamingStrategy outputNamingStrategy;
+
         public WindowSelection()
         {
+            var strategySetting = Settings.Default.NamingStrategy;
+
+            if (!AllowedNamingStrategy.Contains(strategySetting))
+            {
+                strategySetting = DefaultNamingStrategy;
+            }
+
+            var namingStrategyFactory = new OutputNamingStrategyFactory(DefaultImageFileExtension);
+
+            this.outputNamingStrategy = namingStrategyFactory.Create(strategySetting);
+
             InitializeComponent();
         }
 
@@ -65,6 +88,14 @@ namespace Screenshot.App
 
             this.pbxScreenshotPreview.SizeMode = PictureBoxSizeMode.Zoom;
             this.pbxScreenshotPreview.Image = img;
+
+            var settingFolderPath = Settings.Default.OutputFolderPath;
+
+            Directory.CreateDirectory(settingFolderPath);
+
+            var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}"; 
+
+            img.Save(outputFilePath);
         }
     }
 }
