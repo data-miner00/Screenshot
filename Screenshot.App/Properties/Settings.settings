@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Screenshot.App.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="OutputFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">screenshots</Value>
+    </Setting>
+    <Setting Name="IsAutosave" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IsOverwriteIfExist" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="NamingStrategy" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">timestamp</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
