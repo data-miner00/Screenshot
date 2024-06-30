@@ -28,63 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnArea = new Button();
-            label1 = new Label();
-            btnWindow = new Button();
-            btnSettings = new Button();
-            SuspendLayout();
+            this.btnArea = new Button();
+            this.label1 = new Label();
+            this.btnWindow = new Button();
+            this.btnSettings = new Button();
+            this.SuspendLayout();
             // 
             // btnArea
             // 
-            btnArea.Location = new Point(22, 48);
-            btnArea.Name = "btnArea";
-            btnArea.Size = new Size(110, 50);
-            btnArea.TabIndex = 0;
-            btnArea.Text = "Specific Area";
-            btnArea.UseVisualStyleBackColor = true;
+            this.btnArea.Location = new Point(22, 48);
+            this.btnArea.Name = "btnArea";
+            this.btnArea.Size = new Size(110, 50);
+            this.btnArea.TabIndex = 0;
+            this.btnArea.Text = "Specific Area";
+            this.btnArea.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(95, 18);
-            label1.Name = "label1";
-            label1.Size = new Size(130, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Take useful screenshots";
-            label1.Click += label1_Click;
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(95, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(130, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Take useful screenshots";
+            this.label1.Click += this.label1_Click;
             // 
             // btnWindow
             // 
-            btnWindow.Location = new Point(22, 104);
-            btnWindow.Name = "btnWindow";
-            btnWindow.Size = new Size(110, 50);
-            btnWindow.TabIndex = 3;
-            btnWindow.Text = "Isolated Window";
-            btnWindow.UseVisualStyleBackColor = true;
-            btnWindow.Click += btnWindow_Click;
+            this.btnWindow.Location = new Point(22, 104);
+            this.btnWindow.Name = "btnWindow";
+            this.btnWindow.Size = new Size(110, 50);
+            this.btnWindow.TabIndex = 3;
+            this.btnWindow.Text = "Isolated Window";
+            this.btnWindow.UseVisualStyleBackColor = true;
+            this.btnWindow.Click += this.btnWindow_Click;
             // 
             // btnSettings
             // 
-            btnSettings.Location = new Point(22, 160);
-            btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(110, 50);
-            btnSettings.TabIndex = 4;
-            btnSettings.Text = "Settings";
-            btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Location = new Point(22, 160);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new Size(110, 50);
+            this.btnSettings.TabIndex = 4;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += this.btnSettings_Click;
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(319, 244);
-            Controls.Add(btnSettings);
-            Controls.Add(btnWindow);
-            Controls.Add(label1);
-            Controls.Add(btnArea);
-            Name = "MainWindow";
-            Text = "Screenshot";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(7F, 15F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(319, 244);
+            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.btnWindow);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnArea);
+            this.Name = "MainWindow";
+            this.Text = "Screenshot";
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion

@@ -17,5 +17,11 @@ namespace Screenshot.App
             var windowSelection = new WindowSelection();
             windowSelection.Show();
         }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            var settings = new SettingsForm();
+            settings.Show();
+        }
     }
 }
