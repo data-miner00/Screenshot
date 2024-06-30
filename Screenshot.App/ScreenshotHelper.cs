@@ -48,6 +48,21 @@ internal static class ScreenshotHelper
         return img;
     }
 
+    // https://codingvision.net/c-get-desktop-screenshot
+    public static void ScreenshotFull(string filename)
+    {
+        if (Screen.PrimaryScreen is null)
+        {
+            return;
+        }
+
+        var bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+
+        using var graphics = Graphics.FromImage(bmp);
+        graphics.CopyFromScreen(0, 0, 0, 0, Screen.PrimaryScreen.Bounds.Size);
+        bmp.Save(filename);
+    }
+
     private static IntPtr GetWindowHandle(string name)
     {
         var process = Process.GetProcessesByName(name).FirstOrDefault();
