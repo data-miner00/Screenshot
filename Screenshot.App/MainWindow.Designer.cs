@@ -42,6 +42,7 @@
             this.btnArea.TabIndex = 0;
             this.btnArea.Text = "Specific Area";
             this.btnArea.UseVisualStyleBackColor = true;
+            this.btnArea.Click += this.btnArea_Click;
             // 
             // label1
             // 
