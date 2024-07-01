@@ -17,6 +17,6 @@ public sealed class GuidNamingStrategy : IOutputNamingStrategy
     /// <inheritdoc/>
     public string Construct()
     {
-        return $"{Guid.NewGuid()}.${this.fileExtension}";
+        return $"{Guid.NewGuid()}.{this.fileExtension}";
     }
 }
