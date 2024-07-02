@@ -14,6 +14,7 @@ using System.Windows.Forms;
 public partial class SelectArea : Form
 {
     private const char EscapeKeyChar = (char)27;
+    private const char EnterKeyChar = '\r';
 
     public SelectArea()
     {
@@ -94,6 +95,13 @@ public partial class SelectArea : Form
         if (e.KeyChar == EscapeKeyChar)
         {
             this.Close();
+        }
+        else if (e.KeyChar == EnterKeyChar)
+        {
+            MessageBox.Show("hello");
+            this.Close();
+            var preview = new PreviewForm(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
+            preview.Show();
         }
     }
 }
