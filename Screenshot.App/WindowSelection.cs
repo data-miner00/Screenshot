@@ -1,4 +1,6 @@
-﻿using Screenshot.App.Properties;
+﻿namespace Screenshot.App;
+
+using Screenshot.App.Properties;
 using Screenshot.Core;
 using System;
 using System.Collections.Generic;
@@ -11,91 +13,88 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Screenshot.App
+public partial class WindowSelection : Form
 {
-    public partial class WindowSelection : Form
+    private const string DefaultNamingStrategy = "timestamp";
+    private const string DefaultImageFileExtension = "bmp";
+    private static readonly IEnumerable<string> AllowedNamingStrategy = new List<string>
     {
-        private const string DefaultNamingStrategy = "timestamp";
-        private const string DefaultImageFileExtension = "bmp";
-        private static readonly IEnumerable<string> AllowedNamingStrategy = new List<string>
+        "timestamp",
+        "guid",
+    };
+
+    private readonly IOutputNamingStrategy outputNamingStrategy;
+
+    public WindowSelection()
+    {
+        var strategySetting = Settings.Default.NamingStrategy;
+
+        if (!AllowedNamingStrategy.Contains(strategySetting))
         {
-            "timestamp",
-            "guid",
-        };
-
-        private readonly IOutputNamingStrategy outputNamingStrategy;
-
-        public WindowSelection()
-        {
-            var strategySetting = Settings.Default.NamingStrategy;
-
-            if (!AllowedNamingStrategy.Contains(strategySetting))
-            {
-                strategySetting = DefaultNamingStrategy;
-            }
-
-            var namingStrategyFactory = new OutputNamingStrategyFactory(DefaultImageFileExtension);
-
-            this.outputNamingStrategy = namingStrategyFactory.Create(strategySetting);
-
-            InitializeComponent();
+            strategySetting = DefaultNamingStrategy;
         }
 
-        private void WindowSelection_Load(object sender, EventArgs e)
+        var namingStrategyFactory = new OutputNamingStrategyFactory(DefaultImageFileExtension);
+
+        this.outputNamingStrategy = namingStrategyFactory.Create(strategySetting);
+
+        InitializeComponent();
+    }
+
+    private void WindowSelection_Load(object sender, EventArgs e)
+    {
+        this.cbxWindowSelector.DataSource = GetAllWindowHandleNames();
+    }
+
+    private static List<string> GetAllWindowHandleNames()
+    {
+        List<string> windowHandleNames = new();
+        foreach (Process window in Process.GetProcesses())
         {
-            this.cbxWindowSelector.DataSource = GetAllWindowHandleNames();
+            window.Refresh();
+            if (window.MainWindowHandle != IntPtr.Zero && !string.IsNullOrEmpty(window.MainWindowTitle))
+                windowHandleNames.Add(window.ProcessName);
+        }
+        return windowHandleNames;
+    }
+
+    private void cbxWindowSelector_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (this.cbxWindowSelector.SelectedItem is not null)
+        {
+            this.btnScreenshot.Enabled = true;
+        }
+        else
+        {
+            this.btnScreenshot.Enabled = false;
+        }
+    }
+
+    private void btnScreenshot_Click(object sender, EventArgs e)
+    {
+        if (this.cbxWindowSelector.SelectedItem is not string selection)
+        {
+            MessageBox.Show("Selected window is null");
+            return;
         }
 
-        private static List<string> GetAllWindowHandleNames()
+        var img = ScreenshotHelper.GetBitmapScreenshot(selection);
+        if (img == null)
         {
-            List<string> windowHandleNames = new();
-            foreach (Process window in Process.GetProcesses())
-            {
-                window.Refresh();
-                if (window.MainWindowHandle != IntPtr.Zero && !string.IsNullOrEmpty(window.MainWindowTitle))
-                    windowHandleNames.Add(window.ProcessName);
-            }
-            return windowHandleNames;
+            MessageBox.Show("Image is null");
+            return;
         }
+        this.lblSelectedWindow.Text = $"Selected window: {this.cbxWindowSelector.SelectedItem}";
 
-        private void cbxWindowSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.cbxWindowSelector.SelectedItem is not null)
-            {
-                this.btnScreenshot.Enabled = true;
-            }
-            else
-            {
-                this.btnScreenshot.Enabled = false;
-            }
-        }
+        this.pbxScreenshotPreview.SizeMode = PictureBoxSizeMode.Zoom;
+        this.pbxScreenshotPreview.Image = img;
 
-        private void btnScreenshot_Click(object sender, EventArgs e)
-        {
-            if (this.cbxWindowSelector.SelectedItem is not string selection)
-            {
-                MessageBox.Show("Selected window is null");
-                return;
-            }
+        var settingFolderPath = Settings.Default.OutputFolderPath;
 
-            var img = ScreenshotHelper.GetBitmapScreenshot(selection);
-            if (img == null)
-            {
-                MessageBox.Show("Image is null");
-                return;
-            }
-            this.lblSelectedWindow.Text = $"Selected window: {this.cbxWindowSelector.SelectedItem}";
+        Directory.CreateDirectory(settingFolderPath);
 
-            this.pbxScreenshotPreview.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pbxScreenshotPreview.Image = img;
+        var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}"; 
 
-            var settingFolderPath = Settings.Default.OutputFolderPath;
-
-            Directory.CreateDirectory(settingFolderPath);
-
-            var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}"; 
-
-            img.Save(outputFilePath);
-        }
+        img.Save(outputFilePath);
     }
 }

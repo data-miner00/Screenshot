@@ -1,4 +1,5 @@
 ﻿namespace Screenshot.App;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

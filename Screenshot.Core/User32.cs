@@ -1,6 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿namespace Screenshot.Core;
 
-namespace Screenshot.Core;
+using System.Runtime.InteropServices;
 
 public static class User32
 {
