@@ -92,16 +92,17 @@ public partial class SelectArea : Form
 
     private void SelectArea_KeyPress(object sender, KeyPressEventArgs e)
     {
-        if (e.KeyChar == EscapeKeyChar)
+        switch (e.KeyChar)
         {
-            this.Close();
-        }
-        else if (e.KeyChar == EnterKeyChar)
-        {
-            MessageBox.Show("hello");
-            this.Close();
-            var preview = new PreviewForm(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
-            preview.Show();
+            case EscapeKeyChar:
+                this.Close();
+                break;
+            case EnterKeyChar:
+                MessageBox.Show("hello");
+                this.Close();
+                var preview = new PreviewForm(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
+                preview.Show();
+                break;
         }
     }
 }

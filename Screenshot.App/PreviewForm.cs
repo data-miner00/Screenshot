@@ -53,8 +53,23 @@ public partial class PreviewForm : Form
         var settingFolderPath = Settings.Default.OutputFolderPath;
         Directory.CreateDirectory(settingFolderPath);
 
-        var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}"; 
+        var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}";
 
         this.bmp.Save(outputFilePath, ImageFormat.Bmp);
+    }
+
+    private void btnSaveAs_Click(object sender, EventArgs e)
+    {
+        SaveFileDialog sfd = new()
+        {
+            CheckPathExists = true,
+            FileName = "Capture",
+            Filter = "PNG Image(*.png)|*.png|JPG Image(*.jpg)|*.jpg|BMP Image(*.bmp)|*.bmp"
+        };
+
+        if (sfd.ShowDialog() == DialogResult.OK)
+        {
+            this.pbxPreview.Image.Save(sfd.FileName);
+        }
     }
 }

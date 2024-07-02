@@ -29,6 +29,7 @@ partial class PreviewForm
     private void InitializeComponent()
     {
         this.pbxPreview = new PictureBox();
+        this.btnSaveAs = new Button();
         ((System.ComponentModel.ISupportInitialize)this.pbxPreview).BeginInit();
         this.SuspendLayout();
         // 
@@ -40,11 +41,22 @@ partial class PreviewForm
         this.pbxPreview.TabIndex = 0;
         this.pbxPreview.TabStop = false;
         // 
+        // btnSaveAs
+        // 
+        this.btnSaveAs.Location = new Point(12, 453);
+        this.btnSaveAs.Name = "btnSaveAs";
+        this.btnSaveAs.Size = new Size(776, 27);
+        this.btnSaveAs.TabIndex = 1;
+        this.btnSaveAs.Text = "Save As";
+        this.btnSaveAs.UseVisualStyleBackColor = true;
+        this.btnSaveAs.Click += this.btnSaveAs_Click;
+        // 
         // PreviewForm
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(800, 450);
+        this.ClientSize = new Size(800, 492);
+        this.Controls.Add(this.btnSaveAs);
         this.Controls.Add(this.pbxPreview);
         this.Name = "PreviewForm";
         this.Text = "PreviewForm";
@@ -55,4 +67,5 @@ partial class PreviewForm
     #endregion
 
     private PictureBox pbxPreview;
+    private Button btnSaveAs;
 }
