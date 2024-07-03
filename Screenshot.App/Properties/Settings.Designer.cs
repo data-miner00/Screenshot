@@ -58,5 +58,14 @@ namespace Screenshot.App.Properties {
                 return ((string)(this["NamingStrategy"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("bmp")]
+        public string DefaultImageFormat {
+            get {
+                return ((string)(this["DefaultImageFormat"]));
+            }
+        }
     }
 }
