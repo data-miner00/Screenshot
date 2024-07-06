@@ -35,4 +35,20 @@ public partial class MainWindow : Form
         var fullScreen = new FullScreenCapture();
         fullScreen.Show();
     }
+
+    private void MainWindow_Resize(object sender, EventArgs e)
+    {
+        if (this.WindowState == FormWindowState.Minimized)
+        {
+            this.Hide();
+            this.trayIcon.Visible = true;
+        }
+    }
+
+    private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+    {
+        this.Show();
+        this.WindowState = FormWindowState.Normal;
+        this.trayIcon.Visible = false;
+    }
 }

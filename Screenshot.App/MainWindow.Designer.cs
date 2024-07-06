@@ -28,11 +28,14 @@ partial class MainWindow
     /// </summary>
     private void InitializeComponent()
     {
+        this.components = new System.ComponentModel.Container();
+        var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
         this.btnArea = new Button();
         this.label1 = new Label();
         this.btnWindow = new Button();
         this.btnSettings = new Button();
         this.btnFullScreen = new Button();
+        this.trayIcon = new NotifyIcon(this.components);
         this.SuspendLayout();
         // 
         // btnArea
@@ -85,6 +88,15 @@ partial class MainWindow
         this.btnFullScreen.UseVisualStyleBackColor = true;
         this.btnFullScreen.Click += this.btnFullScreen_Click;
         // 
+        // trayIcon
+        // 
+        this.trayIcon.BalloonTipIcon = ToolTipIcon.Info;
+        this.trayIcon.BalloonTipText = "Access Screenshot again here";
+        this.trayIcon.BalloonTipTitle = "Minimized to tray";
+        this.trayIcon.Icon = (Icon)resources.GetObject("trayIcon.Icon");
+        this.trayIcon.Text = "Access Screenshot";
+        this.trayIcon.MouseDoubleClick += this.trayIcon_MouseDoubleClick;
+        // 
         // MainWindow
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
@@ -97,6 +109,7 @@ partial class MainWindow
         this.Controls.Add(this.btnArea);
         this.Name = "MainWindow";
         this.Text = "Screenshot";
+        Resize += this.MainWindow_Resize;
         this.ResumeLayout(false);
         this.PerformLayout();
     }
@@ -108,4 +121,5 @@ partial class MainWindow
     private Button btnWindow;
     private Button btnSettings;
     private Button btnFullScreen;
+    private NotifyIcon trayIcon;
 }
