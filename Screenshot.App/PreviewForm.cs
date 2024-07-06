@@ -24,9 +24,9 @@ public partial class PreviewForm : Form
     };
 
     private readonly IOutputNamingStrategy outputNamingStrategy;
-    private Bitmap bmp;
+    private readonly Image image;
 
-    public PreviewForm(Int32 x, Int32 y, Int32 w, Int32 h, Size s)
+    public PreviewForm(Image image)
     {
         InitializeComponent();
         var strategySetting = Settings.Default.NamingStrategy;
@@ -40,12 +40,12 @@ public partial class PreviewForm : Form
 
         this.outputNamingStrategy = namingStrategyFactory.Create(strategySetting);
 
-        var rect = new Rectangle(x, y, w, h);
-        this.bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
-        var graphics = Graphics.FromImage(bmp);
-        graphics.CopyFromScreen(rect.Left, rect.Top, 0, 0, s, CopyPixelOperation.SourceCopy);
+
+        this.image = Guard.ThrowIfNull(image);
         this.SaveScreenshot();
-        this.pbxPreview.Image = bmp;
+
+        this.pbxPreview.SizeMode = PictureBoxSizeMode.Zoom;
+        this.pbxPreview.Image = image;
     }
 
     private void SaveScreenshot()
@@ -55,7 +55,7 @@ public partial class PreviewForm : Form
 
         var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}";
 
-        this.bmp.Save(outputFilePath, ImageFormat.Bmp);
+        this.image.Save(outputFilePath, ImageFormat.Bmp);
     }
 
     private void btnSaveAs_Click(object sender, EventArgs e)

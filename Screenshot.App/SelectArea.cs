@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,11 +99,23 @@ public partial class SelectArea : Form
                 this.Close();
                 break;
             case EnterKeyChar:
-                MessageBox.Show("hello");
                 this.Close();
-                var preview = new PreviewForm(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
+
+                var bmp = GetBitmapSection(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
+
+                var preview = new PreviewForm(bmp);
                 preview.Show();
                 break;
         }
+    }
+
+    private static Bitmap GetBitmapSection(Int32 x, Int32 y, Int32 w, Int32 h, Size s)
+    {
+        var rect = new Rectangle(x, y, w, h);
+        var bmp = new Bitmap(rect.Width, rect.Height, PixelFormat.Format32bppArgb);
+        var graphics = Graphics.FromImage(bmp);
+        graphics.CopyFromScreen(rect.Left, rect.Top, 0, 0, s, CopyPixelOperation.SourceCopy);
+
+        return bmp;
     }
 }

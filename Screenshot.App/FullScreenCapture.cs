@@ -16,16 +16,10 @@ public partial class FullScreenCapture : Form
 {
     private const int DelayInSeconds = 1;
 
-    private readonly IOutputNamingStrategy outputNamingStrategy;
-
     public FullScreenCapture()
     {
         InitializeComponent();
         this.tbxDelay.Text = DelayInSeconds.ToString();
-        var extension = Settings.Default.DefaultImageFormat;
-        var namingStrategySetting = Settings.Default.NamingStrategy;
-        this.outputNamingStrategy = new OutputNamingStrategyFactory(extension)
-            .Create(namingStrategySetting);
     }
 
     private void FullScreenCapture_Load(object sender, EventArgs e)
@@ -36,15 +30,18 @@ public partial class FullScreenCapture : Form
 
     private async void btnCapture_Click(object sender, EventArgs e)
     {
-        var settingFolderPath = Settings.Default.OutputFolderPath;
-        Directory.CreateDirectory(settingFolderPath);
-
-        var filePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}";
-
         this.Hide();
         await Task.Delay(TimeSpan.FromSeconds(DelayInSeconds));
-        ScreenshotHelper.ScreenshotFull(filePath);
+        var screenshot = ScreenshotHelper.ScreenshotFull();
+
+        if (screenshot is null)
+        {
+            return;
+        }
+
+        var preview = new PreviewForm(screenshot);
         await Task.Delay(1000);
         this.Show();
+        preview.Show();
     }
 }

@@ -15,29 +15,8 @@ using System.Windows.Forms;
 
 public partial class WindowSelection : Form
 {
-    private const string DefaultNamingStrategy = "timestamp";
-    private const string DefaultImageFileExtension = "bmp";
-    private static readonly IEnumerable<string> AllowedNamingStrategy = new List<string>
-    {
-        "timestamp",
-        "guid",
-    };
-
-    private readonly IOutputNamingStrategy outputNamingStrategy;
-
     public WindowSelection()
     {
-        var strategySetting = Settings.Default.NamingStrategy;
-
-        if (!AllowedNamingStrategy.Contains(strategySetting))
-        {
-            strategySetting = DefaultNamingStrategy;
-        }
-
-        var namingStrategyFactory = new OutputNamingStrategyFactory(DefaultImageFileExtension);
-
-        this.outputNamingStrategy = namingStrategyFactory.Create(strategySetting);
-
         InitializeComponent();
     }
 
@@ -84,17 +63,19 @@ public partial class WindowSelection : Form
             MessageBox.Show("Image is null");
             return;
         }
-        this.lblSelectedWindow.Text = $"Selected window: {this.cbxWindowSelector.SelectedItem}";
 
-        this.pbxScreenshotPreview.SizeMode = PictureBoxSizeMode.Zoom;
-        this.pbxScreenshotPreview.Image = img;
+        var preview = new PreviewForm(img);
 
-        var settingFolderPath = Settings.Default.OutputFolderPath;
+        preview.Show();
+    }
 
-        Directory.CreateDirectory(settingFolderPath);
+    private void btnRefresh_Click(object sender, EventArgs e)
+    {
+        this.cbxWindowSelector.DataSource = GetAllWindowHandleNames();
+    }
 
-        var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}"; 
-
-        img.Save(outputFilePath);
+    private void btnCancel_Click(object sender, EventArgs e)
+    {
+        this.Close();
     }
 }

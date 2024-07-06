@@ -28,95 +28,83 @@ partial class WindowSelection
     /// </summary>
     private void InitializeComponent()
     {
-        label1 = new Label();
-        cbxWindowSelector = new ComboBox();
-        btnScreenshot = new Button();
-        lblSelectedWindow = new Label();
-        pbxScreenshotPreview = new PictureBox();
-        label2 = new Label();
-        ((System.ComponentModel.ISupportInitialize)pbxScreenshotPreview).BeginInit();
-        SuspendLayout();
+        this.label1 = new Label();
+        this.cbxWindowSelector = new ComboBox();
+        this.btnRefresh = new Button();
+        this.btnScreenshot = new Button();
+        this.btnCancel = new Button();
+        this.SuspendLayout();
         // 
         // label1
         // 
-        label1.AutoSize = true;
-        label1.Location = new Point(28, 9);
-        label1.Name = "label1";
-        label1.Size = new Size(157, 15);
-        label1.TabIndex = 0;
-        label1.Text = "Select window to screenshot";
+        this.label1.AutoSize = true;
+        this.label1.Location = new Point(12, 9);
+        this.label1.Name = "label1";
+        this.label1.Size = new Size(157, 15);
+        this.label1.TabIndex = 0;
+        this.label1.Text = "Select window to screenshot";
         // 
         // cbxWindowSelector
         // 
-        cbxWindowSelector.FormattingEnabled = true;
-        cbxWindowSelector.Location = new Point(28, 39);
-        cbxWindowSelector.Name = "cbxWindowSelector";
-        cbxWindowSelector.Size = new Size(195, 23);
-        cbxWindowSelector.TabIndex = 1;
-        cbxWindowSelector.SelectedIndexChanged += cbxWindowSelector_SelectedIndexChanged;
+        this.cbxWindowSelector.FormattingEnabled = true;
+        this.cbxWindowSelector.Location = new Point(12, 27);
+        this.cbxWindowSelector.Name = "cbxWindowSelector";
+        this.cbxWindowSelector.Size = new Size(195, 23);
+        this.cbxWindowSelector.TabIndex = 1;
+        this.cbxWindowSelector.SelectedIndexChanged += this.cbxWindowSelector_SelectedIndexChanged;
+        // 
+        // btnRefresh
+        // 
+        this.btnRefresh.Location = new Point(213, 26);
+        this.btnRefresh.Name = "btnRefresh";
+        this.btnRefresh.Size = new Size(71, 24);
+        this.btnRefresh.TabIndex = 6;
+        this.btnRefresh.Text = "Refresh";
+        this.btnRefresh.UseVisualStyleBackColor = true;
+        this.btnRefresh.Click += this.btnRefresh_Click;
         // 
         // btnScreenshot
         // 
-        btnScreenshot.Enabled = false;
-        btnScreenshot.Location = new Point(28, 159);
-        btnScreenshot.Name = "btnScreenshot";
-        btnScreenshot.Size = new Size(125, 47);
-        btnScreenshot.TabIndex = 2;
-        btnScreenshot.Text = "Screenshot";
-        btnScreenshot.UseVisualStyleBackColor = true;
-        btnScreenshot.Click += btnScreenshot_Click;
+        this.btnScreenshot.Location = new Point(12, 56);
+        this.btnScreenshot.Name = "btnScreenshot";
+        this.btnScreenshot.Size = new Size(272, 27);
+        this.btnScreenshot.TabIndex = 7;
+        this.btnScreenshot.Text = "Screenshot";
+        this.btnScreenshot.UseVisualStyleBackColor = true;
+        this.btnScreenshot.Click += this.btnScreenshot_Click;
         // 
-        // lblSelectedWindow
+        // btnCancel
         // 
-        lblSelectedWindow.AutoSize = true;
-        lblSelectedWindow.Location = new Point(28, 129);
-        lblSelectedWindow.Name = "lblSelectedWindow";
-        lblSelectedWindow.Size = new Size(99, 15);
-        lblSelectedWindow.TabIndex = 3;
-        lblSelectedWindow.Text = "Selected window:";
-        // 
-        // pbxScreenshotPreview
-        // 
-        pbxScreenshotPreview.Location = new Point(209, 113);
-        pbxScreenshotPreview.Name = "pbxScreenshotPreview";
-        pbxScreenshotPreview.Size = new Size(663, 414);
-        pbxScreenshotPreview.TabIndex = 4;
-        pbxScreenshotPreview.TabStop = false;
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Location = new Point(209, 86);
-        label2.Name = "label2";
-        label2.Size = new Size(109, 15);
-        label2.TabIndex = 5;
-        label2.Text = "Screenshot Preview";
+        this.btnCancel.Location = new Point(12, 88);
+        this.btnCancel.Name = "btnCancel";
+        this.btnCancel.Size = new Size(272, 27);
+        this.btnCancel.TabIndex = 8;
+        this.btnCancel.Text = "Cancel";
+        this.btnCancel.UseVisualStyleBackColor = true;
+        this.btnCancel.Click += this.btnCancel_Click;
         // 
         // WindowSelection
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(921, 554);
-        Controls.Add(label2);
-        Controls.Add(pbxScreenshotPreview);
-        Controls.Add(lblSelectedWindow);
-        Controls.Add(btnScreenshot);
-        Controls.Add(cbxWindowSelector);
-        Controls.Add(label1);
-        Name = "WindowSelection";
-        Text = "WindowSelection";
-        Load += WindowSelection_Load;
-        ((System.ComponentModel.ISupportInitialize)pbxScreenshotPreview).EndInit();
-        ResumeLayout(false);
-        PerformLayout();
+        this.AutoScaleDimensions = new SizeF(7F, 15F);
+        this.AutoScaleMode = AutoScaleMode.Font;
+        this.ClientSize = new Size(297, 122);
+        this.Controls.Add(this.btnCancel);
+        this.Controls.Add(this.btnScreenshot);
+        this.Controls.Add(this.btnRefresh);
+        this.Controls.Add(this.cbxWindowSelector);
+        this.Controls.Add(this.label1);
+        this.Name = "WindowSelection";
+        this.Text = "WindowSelection";
+        Load += this.WindowSelection_Load;
+        this.ResumeLayout(false);
+        this.PerformLayout();
     }
 
     #endregion
 
     private Label label1;
     private ComboBox cbxWindowSelector;
+    private Button btnRefresh;
     private Button btnScreenshot;
-    private Label lblSelectedWindow;
-    private PictureBox pbxScreenshotPreview;
-    private Label label2;
+    private Button btnCancel;
 }

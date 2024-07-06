@@ -37,9 +37,9 @@ partial class FullScreenCapture
         // 
         // btnCapture
         // 
-        this.btnCapture.Location = new Point(12, 142);
+        this.btnCapture.Location = new Point(12, 104);
         this.btnCapture.Name = "btnCapture";
-        this.btnCapture.Size = new Size(121, 45);
+        this.btnCapture.Size = new Size(315, 27);
         this.btnCapture.TabIndex = 0;
         this.btnCapture.Text = "Capture";
         this.btnCapture.UseVisualStyleBackColor = true;
@@ -50,20 +50,20 @@ partial class FullScreenCapture
         this.cbxSelectScreen.FormattingEnabled = true;
         this.cbxSelectScreen.Location = new Point(12, 27);
         this.cbxSelectScreen.Name = "cbxSelectScreen";
-        this.cbxSelectScreen.Size = new Size(121, 23);
+        this.cbxSelectScreen.Size = new Size(315, 23);
         this.cbxSelectScreen.TabIndex = 1;
         // 
         // tbxDelay
         // 
-        this.tbxDelay.Location = new Point(12, 91);
+        this.tbxDelay.Location = new Point(12, 75);
         this.tbxDelay.Name = "tbxDelay";
-        this.tbxDelay.Size = new Size(121, 23);
+        this.tbxDelay.Size = new Size(315, 23);
         this.tbxDelay.TabIndex = 2;
         // 
         // lblDelay
         // 
         this.lblDelay.AutoSize = true;
-        this.lblDelay.Location = new Point(12, 73);
+        this.lblDelay.Location = new Point(12, 57);
         this.lblDelay.Name = "lblDelay";
         this.lblDelay.Size = new Size(36, 15);
         this.lblDelay.TabIndex = 3;
@@ -82,7 +82,7 @@ partial class FullScreenCapture
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(334, 248);
+        this.ClientSize = new Size(339, 141);
         this.Controls.Add(this.lblSelectScreen);
         this.Controls.Add(this.lblDelay);
         this.Controls.Add(this.tbxDelay);
