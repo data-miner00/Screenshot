@@ -1,5 +1,7 @@
 namespace Screenshot.App;
 
+using Screenshot.App.Views;
+
 internal static class Program
 {
     /// <summary>

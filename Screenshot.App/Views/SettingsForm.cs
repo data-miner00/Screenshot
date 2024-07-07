@@ -1,4 +1,4 @@
-﻿namespace Screenshot.App;
+﻿namespace Screenshot.App.Views;
 
 using System;
 using System.Collections.Generic;

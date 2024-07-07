@@ -1,6 +1,6 @@
-﻿namespace Screenshot.App;
+﻿namespace Screenshot.App.Views;
 
-using Screenshot.App.Properties;
+using Screenshot.App;
 using Screenshot.Core;
 using System;
 using System.Collections.Generic;

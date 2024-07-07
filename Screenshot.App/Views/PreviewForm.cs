@@ -1,4 +1,4 @@
-﻿namespace Screenshot.App;
+﻿namespace Screenshot.App.Views;
 
 using Screenshot.App.Properties;
 using Screenshot.Core;
