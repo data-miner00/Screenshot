@@ -36,6 +36,8 @@ partial class MainWindow
         this.btnSettings = new Button();
         this.btnFullScreen = new Button();
         this.trayIcon = new NotifyIcon(this.components);
+        this.btnExit = new Button();
+        this.btnRecord = new Button();
         this.SuspendLayout();
         // 
         // btnArea
@@ -51,12 +53,11 @@ partial class MainWindow
         // label1
         // 
         this.label1.AutoSize = true;
-        this.label1.Location = new Point(95, 18);
+        this.label1.Location = new Point(71, 18);
         this.label1.Name = "label1";
         this.label1.Size = new Size(130, 15);
         this.label1.TabIndex = 2;
         this.label1.Text = "Take useful screenshots";
-        this.label1.Click += this.label1_Click;
         // 
         // btnWindow
         // 
@@ -97,11 +98,32 @@ partial class MainWindow
         this.trayIcon.Text = "Access Screenshot";
         this.trayIcon.MouseDoubleClick += this.trayIcon_MouseDoubleClick;
         // 
+        // btnExit
+        // 
+        this.btnExit.Location = new Point(138, 160);
+        this.btnExit.Name = "btnExit";
+        this.btnExit.Size = new Size(110, 50);
+        this.btnExit.TabIndex = 6;
+        this.btnExit.Text = "Exit";
+        this.btnExit.UseVisualStyleBackColor = true;
+        this.btnExit.Click += this.btnExit_Click;
+        // 
+        // btnRecord
+        // 
+        this.btnRecord.Location = new Point(138, 104);
+        this.btnRecord.Name = "btnRecord";
+        this.btnRecord.Size = new Size(110, 50);
+        this.btnRecord.TabIndex = 7;
+        this.btnRecord.Text = "Recording";
+        this.btnRecord.UseVisualStyleBackColor = true;
+        // 
         // MainWindow
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(319, 244);
+        this.ClientSize = new Size(270, 228);
+        this.Controls.Add(this.btnRecord);
+        this.Controls.Add(this.btnExit);
         this.Controls.Add(this.btnFullScreen);
         this.Controls.Add(this.btnSettings);
         this.Controls.Add(this.btnWindow);
@@ -122,4 +144,6 @@ partial class MainWindow
     private Button btnSettings;
     private Button btnFullScreen;
     private NotifyIcon trayIcon;
+    private Button btnExit;
+    private Button btnRecord;
 }

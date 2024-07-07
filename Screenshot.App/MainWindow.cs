@@ -7,11 +7,6 @@ public partial class MainWindow : Form
         InitializeComponent();
     }
 
-    private void label1_Click(object sender, EventArgs e)
-    {
-        MessageBox.Show("You've accidentally clicked on the label.");
-    }
-
     private void btnWindow_Click(object sender, EventArgs e)
     {
         var windowSelection = new WindowSelection();
@@ -50,5 +45,10 @@ public partial class MainWindow : Form
         this.Show();
         this.WindowState = FormWindowState.Normal;
         this.trayIcon.Visible = false;
+    }
+
+    private void btnExit_Click(object sender, EventArgs e)
+    {
+        this.Close();
     }
 }
