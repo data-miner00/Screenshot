@@ -38,11 +38,12 @@ partial class MainWindow
         this.trayIcon = new NotifyIcon(this.components);
         this.btnExit = new Button();
         this.btnRecord = new Button();
+        this.btnGithub = new Button();
         this.SuspendLayout();
         // 
         // btnArea
         // 
-        this.btnArea.Location = new Point(22, 48);
+        this.btnArea.Location = new Point(25, 167);
         this.btnArea.Name = "btnArea";
         this.btnArea.Size = new Size(110, 50);
         this.btnArea.TabIndex = 0;
@@ -53,7 +54,7 @@ partial class MainWindow
         // label1
         // 
         this.label1.AutoSize = true;
-        this.label1.Location = new Point(71, 18);
+        this.label1.Location = new Point(74, 137);
         this.label1.Name = "label1";
         this.label1.Size = new Size(130, 15);
         this.label1.TabIndex = 2;
@@ -61,7 +62,7 @@ partial class MainWindow
         // 
         // btnWindow
         // 
-        this.btnWindow.Location = new Point(22, 104);
+        this.btnWindow.Location = new Point(25, 223);
         this.btnWindow.Name = "btnWindow";
         this.btnWindow.Size = new Size(110, 50);
         this.btnWindow.TabIndex = 3;
@@ -71,7 +72,7 @@ partial class MainWindow
         // 
         // btnSettings
         // 
-        this.btnSettings.Location = new Point(22, 160);
+        this.btnSettings.Location = new Point(25, 279);
         this.btnSettings.Name = "btnSettings";
         this.btnSettings.Size = new Size(110, 50);
         this.btnSettings.TabIndex = 4;
@@ -81,7 +82,7 @@ partial class MainWindow
         // 
         // btnFullScreen
         // 
-        this.btnFullScreen.Location = new Point(138, 48);
+        this.btnFullScreen.Location = new Point(141, 167);
         this.btnFullScreen.Name = "btnFullScreen";
         this.btnFullScreen.Size = new Size(110, 50);
         this.btnFullScreen.TabIndex = 5;
@@ -100,7 +101,7 @@ partial class MainWindow
         // 
         // btnExit
         // 
-        this.btnExit.Location = new Point(138, 160);
+        this.btnExit.Location = new Point(141, 279);
         this.btnExit.Name = "btnExit";
         this.btnExit.Size = new Size(110, 50);
         this.btnExit.TabIndex = 6;
@@ -110,18 +111,33 @@ partial class MainWindow
         // 
         // btnRecord
         // 
-        this.btnRecord.Location = new Point(138, 104);
+        this.btnRecord.Location = new Point(141, 223);
         this.btnRecord.Name = "btnRecord";
         this.btnRecord.Size = new Size(110, 50);
         this.btnRecord.TabIndex = 7;
         this.btnRecord.Text = "Recording";
         this.btnRecord.UseVisualStyleBackColor = true;
         // 
+        // btnGithub
+        // 
+        this.btnGithub.BackColor = Color.Transparent;
+        this.btnGithub.BackgroundImageLayout = ImageLayout.Stretch;
+        this.btnGithub.FlatAppearance.BorderSize = 0;
+        this.btnGithub.FlatStyle = FlatStyle.Flat;
+        this.btnGithub.Image = Properties.Resources.github;
+        this.btnGithub.Location = new Point(418, 12);
+        this.btnGithub.Name = "btnGithub";
+        this.btnGithub.Size = new Size(30, 30);
+        this.btnGithub.TabIndex = 8;
+        this.btnGithub.UseVisualStyleBackColor = false;
+        this.btnGithub.Click += this.btnGithub_Click;
+        // 
         // MainWindow
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(270, 228);
+        this.ClientSize = new Size(460, 356);
+        this.Controls.Add(this.btnGithub);
         this.Controls.Add(this.btnRecord);
         this.Controls.Add(this.btnExit);
         this.Controls.Add(this.btnFullScreen);
@@ -146,4 +162,5 @@ partial class MainWindow
     private NotifyIcon trayIcon;
     private Button btnExit;
     private Button btnRecord;
+    private Button btnGithub;
 }

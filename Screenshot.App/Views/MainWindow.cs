@@ -1,5 +1,8 @@
 namespace Screenshot.App.Views;
 
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
 public partial class MainWindow : Form
 {
     public MainWindow()
@@ -50,5 +53,33 @@ public partial class MainWindow : Form
     private void btnExit_Click(object sender, EventArgs e)
     {
         this.Close();
+    }
+
+    private void btnGithub_Click(object sender, EventArgs e)
+    {
+        const string GithubLink = "https://github.com/data-miner/Screenshot";
+
+        this.OpenUrl(GithubLink);
+    }
+
+    private void OpenUrl(string url)
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            url = url.Replace("&", "^&");
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            Process.Start("xdg-open", url);
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            Process.Start("open", url);
+        }
+        else
+        {
+            MessageBox.Show("Operating system not supported");
+        }
     }
 }
