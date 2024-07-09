@@ -1,13 +1,19 @@
 namespace Screenshot.App.Views;
 
+using Screenshot.App.Properties;
+using Screenshot.Core;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 public partial class MainWindow : Form
 {
-    public MainWindow()
+    private readonly string ScreenshotsFolder = Settings.Default.OutputFolderPath;
+    private readonly IFileInfoRepository fileInfoRepository;
+
+    public MainWindow(IFileInfoRepository fileInfoRepository)
     {
         InitializeComponent();
+        this.fileInfoRepository = fileInfoRepository;
     }
 
     private void btnWindow_Click(object sender, EventArgs e)
@@ -81,5 +87,23 @@ public partial class MainWindow : Form
         {
             MessageBox.Show("Operating system not supported");
         }
+    }
+
+    private void MainWindow_Load(object sender, EventArgs e)
+    {
+        var fileInfo = this.fileInfoRepository.GetFileInfo(this.ScreenshotsFolder);
+        ListViewItemConverter converter = new ListViewItemConverter();
+
+        var orderedFileInfo = from info in fileInfo
+                              orderby info.CreationTime descending
+                              select info;
+
+        this.lstvwScreenshotsHistory.Items.AddRange(orderedFileInfo.Select(this.ConvertFileInfoToListViewItem).ToArray());
+    }
+
+    private ListViewItem ConvertFileInfoToListViewItem(FileInfo fileInfo, int index)
+    {
+        string[] row = [(index + 1).ToString(), fileInfo.Name, fileInfo.CreationTime.ToString("yyyy MMM d h:mm tt")];
+        return new ListViewItem(row);
     }
 }
