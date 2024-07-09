@@ -31,7 +31,7 @@ partial class MainWindow
         this.components = new System.ComponentModel.Container();
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
         this.btnArea = new Button();
-        this.label1 = new Label();
+        this.lblScreenshotCounts = new Label();
         this.btnWindow = new Button();
         this.btnFullScreen = new Button();
         this.trayIcon = new NotifyIcon(this.components);
@@ -56,14 +56,14 @@ partial class MainWindow
         this.btnArea.UseVisualStyleBackColor = true;
         this.btnArea.Click += this.btnArea_Click;
         // 
-        // label1
+        // lblScreenshotCounts
         // 
-        this.label1.AutoSize = true;
-        this.label1.Location = new Point(12, 341);
-        this.label1.Name = "label1";
-        this.label1.Size = new Size(111, 15);
-        this.label1.TabIndex = 2;
-        this.label1.Text = "Taken 0 screenshots";
+        this.lblScreenshotCounts.AutoSize = true;
+        this.lblScreenshotCounts.Location = new Point(12, 341);
+        this.lblScreenshotCounts.Name = "lblScreenshotCounts";
+        this.lblScreenshotCounts.Size = new Size(111, 15);
+        this.lblScreenshotCounts.TabIndex = 2;
+        this.lblScreenshotCounts.Text = "Taken 0 screenshots";
         // 
         // btnWindow
         // 
@@ -155,6 +155,8 @@ partial class MainWindow
         // lstvwScreenshotsHistory
         // 
         this.lstvwScreenshotsHistory.Columns.AddRange(new ColumnHeader[] { this.colFileIndex, this.colFileName, this.colFileCreated });
+        this.lstvwScreenshotsHistory.FullRowSelect = true;
+        this.lstvwScreenshotsHistory.GridLines = true;
         this.lstvwScreenshotsHistory.Location = new Point(12, 54);
         this.lstvwScreenshotsHistory.Name = "lstvwScreenshotsHistory";
         this.lstvwScreenshotsHistory.Size = new Size(396, 274);
@@ -189,7 +191,7 @@ partial class MainWindow
         this.Controls.Add(this.btnExit);
         this.Controls.Add(this.btnFullScreen);
         this.Controls.Add(this.btnWindow);
-        this.Controls.Add(this.label1);
+        this.Controls.Add(this.lblScreenshotCounts);
         this.Controls.Add(this.btnArea);
         this.Name = "MainWindow";
         this.Text = "Screenshot";
@@ -202,7 +204,7 @@ partial class MainWindow
     #endregion
 
     private Button btnArea;
-    private Label label1;
+    private Label lblScreenshotCounts;
     private Button btnWindow;
     private Button btnSettings;
     private ListView lstvwScreenshotsHistory;

@@ -99,6 +99,7 @@ public partial class MainWindow : Form
                               select info;
 
         this.lstvwScreenshotsHistory.Items.AddRange(orderedFileInfo.Select(this.ConvertFileInfoToListViewItem).ToArray());
+        this.lblScreenshotCounts.Text = $"Taken {fileInfo.Length} screenshots";
     }
 
     private ListViewItem ConvertFileInfoToListViewItem(FileInfo fileInfo, int index)
