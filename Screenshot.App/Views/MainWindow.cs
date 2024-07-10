@@ -19,6 +19,7 @@ public partial class MainWindow : Form
     private void btnWindow_Click(object sender, EventArgs e)
     {
         var windowSelection = new WindowSelection();
+        windowSelection.ScreenshotEvent += this.MainWindow_RefreshScreenshotInfoList;
         windowSelection.Show();
     }
 
@@ -31,12 +32,14 @@ public partial class MainWindow : Form
     private void btnArea_Click(object sender, EventArgs e)
     {
         var selectArea = new SelectArea();
+        selectArea.ScreenshotEvent += this.MainWindow_RefreshScreenshotInfoList;
         selectArea.Show();
     }
 
     private void btnFullScreen_Click(object sender, EventArgs e)
     {
         var fullScreen = new FullScreenCapture();
+        fullScreen.ScreenshotEvent += this.MainWindow_RefreshScreenshotInfoList;
         fullScreen.Show();
     }
 
@@ -91,6 +94,11 @@ public partial class MainWindow : Form
 
     private void MainWindow_Load(object sender, EventArgs e)
     {
+        this.LoadScreenshotInfoList();
+    }
+
+    private void LoadScreenshotInfoList()
+    {
         var fileInfo = this.fileInfoRepository.GetFileInfo(this.ScreenshotsFolder);
         ListViewItemConverter converter = new ListViewItemConverter();
 
@@ -100,6 +108,12 @@ public partial class MainWindow : Form
 
         this.lstvwScreenshotsHistory.Items.AddRange(orderedFileInfo.Select(this.ConvertFileInfoToListViewItem).ToArray());
         this.lblScreenshotCounts.Text = $"Taken {fileInfo.Length} screenshots";
+    }
+
+    private void MainWindow_RefreshScreenshotInfoList(object? sender, string e)
+    {
+        this.lstvwScreenshotsHistory.Items.Clear();
+        this.LoadScreenshotInfoList();
     }
 
     private ListViewItem ConvertFileInfoToListViewItem(FileInfo fileInfo, int index)

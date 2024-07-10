@@ -15,6 +15,10 @@ using System.Windows.Forms;
 
 public partial class WindowSelection : Form
 {
+    private const string ScreenshotType = "window";
+
+    public EventHandler<string>? ScreenshotEvent;
+
     public WindowSelection()
     {
         InitializeComponent();
@@ -65,7 +69,7 @@ public partial class WindowSelection : Form
         }
 
         var preview = new PreviewForm(img);
-
+        this.RaiseScreenshotEvent();
         preview.Show();
     }
 
@@ -77,5 +81,10 @@ public partial class WindowSelection : Form
     private void btnCancel_Click(object sender, EventArgs e)
     {
         this.Close();
+    }
+
+    private void RaiseScreenshotEvent()
+    {
+        this.ScreenshotEvent?.Invoke(this, ScreenshotType);
     }
 }

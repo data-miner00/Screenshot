@@ -14,8 +14,11 @@ using System.Windows.Forms;
 
 public partial class SelectArea : Form
 {
+    private const string ScreenshotType = "area";
     private const char EscapeKeyChar = (char)27;
     private const char EnterKeyChar = '\r';
+
+    public EventHandler<string>? ScreenshotEvent;
 
     public SelectArea()
     {
@@ -102,11 +105,17 @@ public partial class SelectArea : Form
                 this.Close();
 
                 var bmp = GetBitmapSection(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
-
+        
                 var preview = new PreviewForm(bmp);
+                this.RaiseScreenshotEvent();
                 preview.Show();
                 break;
         }
+    }
+
+    private void RaiseScreenshotEvent()
+    {
+        this.ScreenshotEvent?.Invoke(this, ScreenshotType);
     }
 
     private static Bitmap GetBitmapSection(Int32 x, Int32 y, Int32 w, Int32 h, Size s)

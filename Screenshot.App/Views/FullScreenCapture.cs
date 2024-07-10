@@ -14,7 +14,10 @@ using System.Windows.Forms;
 
 public partial class FullScreenCapture : Form
 {
+    private const string ScreenshotType = "fullscreen";
     private const int DelayInSeconds = 1;
+
+    public EventHandler<string>? ScreenshotEvent;
 
     public FullScreenCapture()
     {
@@ -40,8 +43,15 @@ public partial class FullScreenCapture : Form
         }
 
         var preview = new PreviewForm(screenshot);
+        this.RaiseScreenshotEvent();
+
         await Task.Delay(1000);
         this.Show();
         preview.Show();
+    }
+
+    private void RaiseScreenshotEvent()
+    {
+        this.ScreenshotEvent?.Invoke(this, ScreenshotType);
     }
 }
