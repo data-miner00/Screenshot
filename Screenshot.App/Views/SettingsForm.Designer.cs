@@ -29,10 +29,10 @@ partial class SettingsForm
     private void InitializeComponent()
     {
         this.label1 = new Label();
-        this.textBox1 = new TextBox();
+        this.txtOutputFolder = new TextBox();
         this.groupBox1 = new GroupBox();
         this.label2 = new Label();
-        this.comboBox1 = new ComboBox();
+        this.cbxNamingStrategy = new ComboBox();
         this.cbxOverwriteIfExist = new CheckBox();
         this.cbxSaveAs = new CheckBox();
         this.cbxAutosave = new CheckBox();
@@ -49,17 +49,18 @@ partial class SettingsForm
         this.label1.TabIndex = 0;
         this.label1.Text = "Screenshot Folder";
         // 
-        // textBox1
+        // txtOutputFolder
         // 
-        this.textBox1.Location = new Point(12, 38);
-        this.textBox1.Name = "textBox1";
-        this.textBox1.Size = new Size(242, 23);
-        this.textBox1.TabIndex = 1;
+        this.txtOutputFolder.Location = new Point(12, 38);
+        this.txtOutputFolder.Name = "txtOutputFolder";
+        this.txtOutputFolder.Size = new Size(242, 23);
+        this.txtOutputFolder.TabIndex = 1;
+        this.txtOutputFolder.TextChanged += this.txtOutputFolder_TextChanged;
         // 
         // groupBox1
         // 
         this.groupBox1.Controls.Add(this.label2);
-        this.groupBox1.Controls.Add(this.comboBox1);
+        this.groupBox1.Controls.Add(this.cbxNamingStrategy);
         this.groupBox1.Controls.Add(this.cbxOverwriteIfExist);
         this.groupBox1.Controls.Add(this.cbxSaveAs);
         this.groupBox1.Controls.Add(this.cbxAutosave);
@@ -79,13 +80,14 @@ partial class SettingsForm
         this.label2.TabIndex = 12;
         this.label2.Text = "File naming strategy";
         // 
-        // comboBox1
+        // cbxNamingStrategy
         // 
-        this.comboBox1.FormattingEnabled = true;
-        this.comboBox1.Location = new Point(15, 130);
-        this.comboBox1.Name = "comboBox1";
-        this.comboBox1.Size = new Size(199, 23);
-        this.comboBox1.TabIndex = 11;
+        this.cbxNamingStrategy.FormattingEnabled = true;
+        this.cbxNamingStrategy.Location = new Point(15, 130);
+        this.cbxNamingStrategy.Name = "cbxNamingStrategy";
+        this.cbxNamingStrategy.Size = new Size(199, 23);
+        this.cbxNamingStrategy.TabIndex = 11;
+        this.cbxNamingStrategy.SelectedIndexChanged += this.cbxNamingStrategy_SelectedIndexChanged;
         // 
         // cbxOverwriteIfExist
         // 
@@ -96,6 +98,7 @@ partial class SettingsForm
         this.cbxOverwriteIfExist.TabIndex = 10;
         this.cbxOverwriteIfExist.Text = "Overwrite if exist";
         this.cbxOverwriteIfExist.UseVisualStyleBackColor = true;
+        this.cbxOverwriteIfExist.CheckedChanged += this.cbxOverwriteIfExist_CheckedChanged;
         // 
         // cbxSaveAs
         // 
@@ -106,6 +109,7 @@ partial class SettingsForm
         this.cbxSaveAs.TabIndex = 9;
         this.cbxSaveAs.Text = "Save as";
         this.cbxSaveAs.UseVisualStyleBackColor = true;
+        this.cbxSaveAs.CheckedChanged += this.cbxSaveAs_CheckedChanged;
         // 
         // cbxAutosave
         // 
@@ -116,6 +120,7 @@ partial class SettingsForm
         this.cbxAutosave.TabIndex = 8;
         this.cbxAutosave.Text = "Autosave";
         this.cbxAutosave.UseVisualStyleBackColor = true;
+        this.cbxAutosave.CheckedChanged += this.cbxAutosave_CheckedChanged;
         // 
         // btnSaveSettings
         // 
@@ -125,18 +130,20 @@ partial class SettingsForm
         this.btnSaveSettings.TabIndex = 7;
         this.btnSaveSettings.Text = "Save";
         this.btnSaveSettings.UseVisualStyleBackColor = true;
+        this.btnSaveSettings.Click += this.btnSaveSettings_Click;
         // 
-        // Settings
+        // SettingsForm
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
         this.ClientSize = new Size(277, 310);
         this.Controls.Add(this.btnSaveSettings);
         this.Controls.Add(this.groupBox1);
-        this.Controls.Add(this.textBox1);
+        this.Controls.Add(this.txtOutputFolder);
         this.Controls.Add(this.label1);
-        this.Name = "Settings";
+        this.Name = "SettingsForm";
         this.Text = "Settings";
+        Load += this.SettingsForm_Load;
         this.groupBox1.ResumeLayout(false);
         this.groupBox1.PerformLayout();
         this.ResumeLayout(false);
@@ -146,7 +153,7 @@ partial class SettingsForm
     #endregion
 
     private Label label1;
-    private TextBox textBox1;
+    private TextBox txtOutputFolder;
     private Label label3;
     private Label label4;
     private GroupBox groupBox1;
@@ -154,6 +161,6 @@ partial class SettingsForm
     private CheckBox cbxSaveAs;
     private CheckBox cbxOverwriteIfExist;
     private Label label2;
-    private ComboBox comboBox1;
+    private ComboBox cbxNamingStrategy;
     private Button btnSaveSettings;
 }

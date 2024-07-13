@@ -52,7 +52,7 @@ namespace Screenshot.App.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("timestamp")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Timestamp")]
         public string NamingStrategy {
             get {
                 return ((string)(this["NamingStrategy"]));

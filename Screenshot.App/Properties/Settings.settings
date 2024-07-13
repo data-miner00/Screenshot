@@ -12,7 +12,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="NamingStrategy" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">timestamp</Value>
+      <Value Profile="(Default)">Timestamp</Value>
     </Setting>
     <Setting Name="DefaultImageFormat" Type="System.String" Scope="Application">
       <Value Profile="(Default)">bmp</Value>
