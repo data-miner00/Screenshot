@@ -1,25 +1,25 @@
 ﻿namespace Screenshot.Core;
 
+using Screenshot.Core.Models;
 using System;
 
 public sealed class OutputNamingStrategyFactory
 {
+    private readonly ImageFormat imageFormat;
     private readonly string fileExtension;
-    private string namingStrategy;
 
-    public OutputNamingStrategyFactory(string fileExtension)
+    public OutputNamingStrategyFactory(ImageFormat imageFormat)
     {
-        this.fileExtension = fileExtension;
+        this.imageFormat = Guard.ThrowIfDefault(this.imageFormat);
+        this.fileExtension = imageFormat.ToString().ToLowerInvariant();
     }
 
-    public IOutputNamingStrategy Create(string namingStrategy)
+    public IOutputNamingStrategy Create(NamingStrategies namingStrategy)
     {
-        this.namingStrategy = namingStrategy;
-
         return namingStrategy switch
         {
-            "guid" => new GuidNamingStrategy(this.fileExtension),
-            "timestamp" => new TimestampNamingStrategy(this.fileExtension),
+            NamingStrategies.Guid => new GuidNamingStrategy(this.fileExtension),
+            NamingStrategies.Timestamp => new TimestampNamingStrategy(this.fileExtension),
             _ => throw new NotSupportedException(),
         };
     }

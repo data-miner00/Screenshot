@@ -61,7 +61,7 @@ namespace Screenshot.App.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("bmp")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Bmp")]
         public string DefaultImageFormat {
             get {
                 return ((string)(this["DefaultImageFormat"]));

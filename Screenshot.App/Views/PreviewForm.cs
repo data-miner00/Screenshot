@@ -13,33 +13,31 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using AppImageFormat = Screenshot.Core.Models.ImageFormat;
+using NamingStrategies = Screenshot.Core.Models.NamingStrategies;
+
 public partial class PreviewForm : Form
 {
-    private const string DefaultNamingStrategy = "timestamp";
-    private const string DefaultImageFileExtension = "bmp";
-    private static readonly IEnumerable<string> AllowedNamingStrategy = new List<string>
-    {
-        "timestamp",
-        "guid",
-    };
+    private readonly NamingStrategies DefaultNamingStrategy = NamingStrategies.Timestamp;
+    private readonly AppImageFormat DefaultImageFileExtension = AppImageFormat.Bmp;
 
+    private readonly Settings settings = Settings.Default;
     private readonly IOutputNamingStrategy outputNamingStrategy;
     private readonly Image image;
 
     public PreviewForm(Image image)
     {
         InitializeComponent();
-        var strategySetting = Settings.Default.NamingStrategy;
+        var strategySetting = this.settings.NamingStrategy;
 
-        if (!AllowedNamingStrategy.Contains(strategySetting))
+        if (!Enum.TryParse<NamingStrategies>(strategySetting, out var parsedStrategy))
         {
-            strategySetting = DefaultNamingStrategy;
+            parsedStrategy = NamingStrategies.Timestamp;
         }
 
         var namingStrategyFactory = new OutputNamingStrategyFactory(DefaultImageFileExtension);
 
-        this.outputNamingStrategy = namingStrategyFactory.Create(strategySetting);
-
+        this.outputNamingStrategy = namingStrategyFactory.Create(parsedStrategy);
 
         this.image = Guard.ThrowIfNull(image);
         this.SaveScreenshot();
@@ -50,7 +48,7 @@ public partial class PreviewForm : Form
 
     private void SaveScreenshot()
     {
-        var settingFolderPath = Settings.Default.OutputFolderPath;
+        var settingFolderPath = this.settings.OutputFolderPath;
         Directory.CreateDirectory(settingFolderPath);
 
         var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}";

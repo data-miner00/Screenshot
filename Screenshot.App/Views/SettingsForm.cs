@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,7 @@ using System.Windows.Forms;
 public partial class SettingsForm : Form
 {
     private readonly Settings settings = Settings.Default;
+    private readonly TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
     public SettingsForm()
     {
@@ -26,6 +28,13 @@ public partial class SettingsForm : Form
             .ToArray();
 
         this.cbxNamingStrategy.Items.AddRange(validNamingStrategies);
+
+        var validImageFormat = Enum.GetValues<ImageFormat>()
+            .Where(x => x != default)
+            .Select(x => x.ToString())
+            .ToArray();
+
+        this.cbxFileExtension.Items.AddRange(validImageFormat);
     }
 
     private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -39,7 +48,13 @@ public partial class SettingsForm : Form
         this.txtOutputFolder.Text = this.settings.OutputFolderPath;
         this.cbxAutosave.Checked = this.settings.IsAutosave;
         this.cbxOverwriteIfExist.Checked = this.settings.IsOverwriteIfExist;
-        this.cbxNamingStrategy.SelectedIndex = this.cbxNamingStrategy.Items.IndexOf(this.settings.NamingStrategy);
+        this.cbxNamingStrategy.SelectedIndex = this.cbxNamingStrategy
+            .Items
+            .IndexOf(this.settings.NamingStrategy);
+
+        this.cbxFileExtension.SelectedIndex = this.cbxFileExtension
+            .Items
+            .IndexOf(this.textInfo.ToTitleCase(this.settings.DefaultImageFormat));
     }
 
     private void txtOutputFolder_TextChanged(object sender, EventArgs e)

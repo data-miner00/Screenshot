@@ -37,6 +37,8 @@ partial class SettingsForm
         this.cbxSaveAs = new CheckBox();
         this.cbxAutosave = new CheckBox();
         this.btnSaveSettings = new Button();
+        this.label5 = new Label();
+        this.cbxFileExtension = new ComboBox();
         this.groupBox1.SuspendLayout();
         this.SuspendLayout();
         // 
@@ -59,6 +61,8 @@ partial class SettingsForm
         // 
         // groupBox1
         // 
+        this.groupBox1.Controls.Add(this.cbxFileExtension);
+        this.groupBox1.Controls.Add(this.label5);
         this.groupBox1.Controls.Add(this.label2);
         this.groupBox1.Controls.Add(this.cbxNamingStrategy);
         this.groupBox1.Controls.Add(this.cbxOverwriteIfExist);
@@ -66,7 +70,7 @@ partial class SettingsForm
         this.groupBox1.Controls.Add(this.cbxAutosave);
         this.groupBox1.Location = new Point(12, 87);
         this.groupBox1.Name = "groupBox1";
-        this.groupBox1.Size = new Size(242, 178);
+        this.groupBox1.Size = new Size(242, 226);
         this.groupBox1.TabIndex = 6;
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "Persistence";
@@ -85,7 +89,7 @@ partial class SettingsForm
         this.cbxNamingStrategy.FormattingEnabled = true;
         this.cbxNamingStrategy.Location = new Point(15, 130);
         this.cbxNamingStrategy.Name = "cbxNamingStrategy";
-        this.cbxNamingStrategy.Size = new Size(199, 23);
+        this.cbxNamingStrategy.Size = new Size(208, 23);
         this.cbxNamingStrategy.TabIndex = 11;
         this.cbxNamingStrategy.SelectedIndexChanged += this.cbxNamingStrategy_SelectedIndexChanged;
         // 
@@ -124,7 +128,7 @@ partial class SettingsForm
         // 
         // btnSaveSettings
         // 
-        this.btnSaveSettings.Location = new Point(12, 271);
+        this.btnSaveSettings.Location = new Point(12, 319);
         this.btnSaveSettings.Name = "btnSaveSettings";
         this.btnSaveSettings.Size = new Size(242, 23);
         this.btnSaveSettings.TabIndex = 7;
@@ -132,11 +136,28 @@ partial class SettingsForm
         this.btnSaveSettings.UseVisualStyleBackColor = true;
         this.btnSaveSettings.Click += this.btnSaveSettings_Click;
         // 
+        // label5
+        // 
+        this.label5.AutoSize = true;
+        this.label5.Location = new Point(15, 167);
+        this.label5.Name = "label5";
+        this.label5.Size = new Size(79, 15);
+        this.label5.TabIndex = 13;
+        this.label5.Text = "File extension";
+        // 
+        // cbxFileExtension
+        // 
+        this.cbxFileExtension.FormattingEnabled = true;
+        this.cbxFileExtension.Location = new Point(15, 185);
+        this.cbxFileExtension.Name = "cbxFileExtension";
+        this.cbxFileExtension.Size = new Size(208, 23);
+        this.cbxFileExtension.TabIndex = 14;
+        // 
         // SettingsForm
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
-        this.ClientSize = new Size(277, 310);
+        this.ClientSize = new Size(277, 354);
         this.Controls.Add(this.btnSaveSettings);
         this.Controls.Add(this.groupBox1);
         this.Controls.Add(this.txtOutputFolder);
@@ -163,4 +184,6 @@ partial class SettingsForm
     private Label label2;
     private ComboBox cbxNamingStrategy;
     private Button btnSaveSettings;
+    private ComboBox cbxFileExtension;
+    private Label label5;
 }
