@@ -10,7 +10,7 @@ public sealed class OutputNamingStrategyFactory
 
     public OutputNamingStrategyFactory(ImageFormat imageFormat)
     {
-        this.imageFormat = Guard.ThrowIfDefault(this.imageFormat);
+        this.imageFormat = Guard.ThrowIfDefault(imageFormat);
         this.fileExtension = imageFormat.ToString().ToLowerInvariant();
     }
 
