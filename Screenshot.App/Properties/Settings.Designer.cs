@@ -67,5 +67,14 @@ namespace Screenshot.App.Properties {
                 return ((string)(this["DefaultImageFormat"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://github.com/data-miner/Screenshot")]
+        public string GitHubUrl {
+            get {
+                return ((string)(this["GitHubUrl"]));
+            }
+        }
     }
 }

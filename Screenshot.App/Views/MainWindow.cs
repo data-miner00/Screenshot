@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 
 public partial class MainWindow : Form
 {
+    private readonly Settings settings = Settings.Default;
     private readonly string ScreenshotsFolder = Settings.Default.OutputFolderPath;
     private readonly IFileInfoRepository fileInfoRepository;
 
@@ -66,7 +67,7 @@ public partial class MainWindow : Form
 
     private void btnGithub_Click(object sender, EventArgs e)
     {
-        const string GithubLink = "https://github.com/data-miner/Screenshot";
+        var GithubLink = this.settings.GitHubUrl;
 
         this.OpenUrl(GithubLink);
     }
