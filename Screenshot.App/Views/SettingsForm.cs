@@ -16,7 +16,7 @@ using System.Windows.Forms;
 public partial class SettingsForm : Form
 {
     private readonly Settings settings = Settings.Default;
-    private readonly TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+    private readonly TextInfo textInfo = CultureInfo.InvariantCulture.TextInfo;
 
     public SettingsForm()
     {

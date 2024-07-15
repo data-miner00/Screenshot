@@ -163,6 +163,7 @@ partial class MainWindow
         this.lstvwScreenshotsHistory.TabIndex = 11;
         this.lstvwScreenshotsHistory.UseCompatibleStateImageBehavior = false;
         this.lstvwScreenshotsHistory.View = View.Details;
+        this.lstvwScreenshotsHistory.DoubleClick += this.lstvwScreenshotsHistory_DoubleClick;
         // 
         // colFileIndex
         // 

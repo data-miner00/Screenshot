@@ -121,4 +121,16 @@ public partial class MainWindow : Form
         string[] row = [(index + 1).ToString(), fileInfo.Name, fileInfo.CreationTime.ToString("yyyy MMM d h:mm tt")];
         return new ListViewItem(row);
     }
+
+    private void lstvwScreenshotsHistory_DoubleClick(object sender, EventArgs e)
+    {
+        var selectedScreenshot = this.lstvwScreenshotsHistory.SelectedItems[0].SubItems[1].Text;
+
+        var filePath = $"{this.ScreenshotsFolder}/{selectedScreenshot}";
+
+        var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        var image = Image.FromStream(fileStream);
+
+        new PreviewForm(image).Show();
+    }
 }
