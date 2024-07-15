@@ -80,4 +80,9 @@ public partial class SettingsForm : Form
     {
         this.settings["NamingStrategy"] = this.cbxNamingStrategy.SelectedItem;
     }
+
+    private void cbxFileExtension_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        this.settings["DefaultImageFormat"] = this.cbxFileExtension.SelectedItem;
+    }
 }

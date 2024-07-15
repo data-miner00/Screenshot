@@ -31,14 +31,14 @@ partial class SettingsForm
         this.label1 = new Label();
         this.txtOutputFolder = new TextBox();
         this.groupBox1 = new GroupBox();
+        this.cbxFileExtension = new ComboBox();
+        this.label5 = new Label();
         this.label2 = new Label();
         this.cbxNamingStrategy = new ComboBox();
         this.cbxOverwriteIfExist = new CheckBox();
         this.cbxSaveAs = new CheckBox();
         this.cbxAutosave = new CheckBox();
         this.btnSaveSettings = new Button();
-        this.label5 = new Label();
-        this.cbxFileExtension = new ComboBox();
         this.groupBox1.SuspendLayout();
         this.SuspendLayout();
         // 
@@ -74,6 +74,24 @@ partial class SettingsForm
         this.groupBox1.TabIndex = 6;
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "Persistence";
+        // 
+        // cbxFileExtension
+        // 
+        this.cbxFileExtension.FormattingEnabled = true;
+        this.cbxFileExtension.Location = new Point(15, 185);
+        this.cbxFileExtension.Name = "cbxFileExtension";
+        this.cbxFileExtension.Size = new Size(208, 23);
+        this.cbxFileExtension.TabIndex = 14;
+        this.cbxFileExtension.SelectedIndexChanged += this.cbxFileExtension_SelectedIndexChanged;
+        // 
+        // label5
+        // 
+        this.label5.AutoSize = true;
+        this.label5.Location = new Point(15, 167);
+        this.label5.Name = "label5";
+        this.label5.Size = new Size(79, 15);
+        this.label5.TabIndex = 13;
+        this.label5.Text = "File extension";
         // 
         // label2
         // 
@@ -135,23 +153,6 @@ partial class SettingsForm
         this.btnSaveSettings.Text = "Save";
         this.btnSaveSettings.UseVisualStyleBackColor = true;
         this.btnSaveSettings.Click += this.btnSaveSettings_Click;
-        // 
-        // label5
-        // 
-        this.label5.AutoSize = true;
-        this.label5.Location = new Point(15, 167);
-        this.label5.Name = "label5";
-        this.label5.Size = new Size(79, 15);
-        this.label5.TabIndex = 13;
-        this.label5.Text = "File extension";
-        // 
-        // cbxFileExtension
-        // 
-        this.cbxFileExtension.FormattingEnabled = true;
-        this.cbxFileExtension.Location = new Point(15, 185);
-        this.cbxFileExtension.Name = "cbxFileExtension";
-        this.cbxFileExtension.Size = new Size(208, 23);
-        this.cbxFileExtension.TabIndex = 14;
         // 
         // SettingsForm
         // 

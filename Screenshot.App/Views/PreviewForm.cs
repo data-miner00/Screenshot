@@ -24,18 +24,27 @@ public partial class PreviewForm : Form
     private readonly Settings settings = Settings.Default;
     private readonly IOutputNamingStrategy outputNamingStrategy;
     private readonly Image image;
+    private AppImageFormat currentImageFormat;
 
     public PreviewForm(Image image)
     {
         InitializeComponent();
         var strategySetting = this.settings.NamingStrategy;
+        var imageFormatSetting = this.settings.DefaultImageFormat;
 
         if (!Enum.TryParse<NamingStrategies>(strategySetting, out var parsedStrategy))
         {
-            parsedStrategy = NamingStrategies.Timestamp;
+            parsedStrategy = DefaultNamingStrategy;
         }
 
-        var namingStrategyFactory = new OutputNamingStrategyFactory(DefaultImageFileExtension);
+        if (!Enum.TryParse<AppImageFormat>(imageFormatSetting, out var parsedImageFormat))
+        {
+            parsedImageFormat = DefaultImageFileExtension;
+        }
+
+        this.currentImageFormat = parsedImageFormat;
+
+        var namingStrategyFactory = new OutputNamingStrategyFactory(parsedImageFormat);
 
         this.outputNamingStrategy = namingStrategyFactory.Create(parsedStrategy);
 
@@ -49,11 +58,12 @@ public partial class PreviewForm : Form
     private void SaveScreenshot()
     {
         var settingFolderPath = this.settings.OutputFolderPath;
+
         Directory.CreateDirectory(settingFolderPath);
 
         var outputFilePath = $"{settingFolderPath}/{this.outputNamingStrategy.Construct()}";
 
-        this.image.Save(outputFilePath, ImageFormat.Bmp);
+        this.image.Save(outputFilePath, MapToImageFormat(this.currentImageFormat));
     }
 
     private void btnSaveAs_Click(object sender, EventArgs e)
@@ -69,5 +79,18 @@ public partial class PreviewForm : Form
         {
             this.pbxPreview.Image.Save(sfd.FileName);
         }
+    }
+
+    private static ImageFormat MapToImageFormat(AppImageFormat imageFormat)
+    {
+        return imageFormat switch
+        {
+            AppImageFormat.Png => ImageFormat.Png,
+            AppImageFormat.Jpg or
+            AppImageFormat.Jpeg => ImageFormat.Jpeg,
+            AppImageFormat.None or
+            AppImageFormat.Bmp => ImageFormat.Bmp,
+            _ => throw new NotImplementedException(),
+        };
     }
 }

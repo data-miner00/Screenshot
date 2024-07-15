@@ -5,12 +5,11 @@ using System;
 
 public sealed class OutputNamingStrategyFactory
 {
-    private readonly ImageFormat imageFormat;
     private readonly string fileExtension;
 
     public OutputNamingStrategyFactory(ImageFormat imageFormat)
     {
-        this.imageFormat = Guard.ThrowIfDefault(imageFormat);
+        Guard.ThrowIfDefault(imageFormat);
         this.fileExtension = imageFormat.ToString().ToLowerInvariant();
     }
 
