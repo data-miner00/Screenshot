@@ -1,5 +1,6 @@
 ﻿namespace Screenshot.Core;
 
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 public static class User32
@@ -52,4 +53,14 @@ public static class User32
 
     [DllImport(User32Dll)]
     public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+    [DllImport(User32Dll, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool PrintWindow(IntPtr hwnd, IntPtr hDC, uint nFlags);
+
+    [DllImport(User32Dll)]
+    public static extern bool GetWindowRect(IntPtr handle, ref Rectangle rect);
+
+    [DllImport(User32Dll, SetLastError = true)]
+    public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 }
