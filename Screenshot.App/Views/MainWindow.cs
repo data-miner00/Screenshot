@@ -11,10 +11,21 @@ public partial class MainWindow : Form
     private readonly string ScreenshotsFolder = Settings.Default.OutputFolderPath;
     private readonly IFileInfoRepository fileInfoRepository;
 
+    private const int HOTKEY_ID = 1;
+
     public MainWindow(IFileInfoRepository fileInfoRepository)
     {
         InitializeComponent();
         this.fileInfoRepository = fileInfoRepository;
+
+        User32.RegisterHotKey(this.Handle, HOTKEY_ID, User32.CTRL, (int) Keys.PrintScreen);
+    }
+
+    protected override void WndProc(ref Message m) {
+        if (m.Msg == 0x0312 && m.WParam.ToInt32() == HOTKEY_ID) {
+            MessageBox.Show("Clicked!");
+        }
+        base.WndProc(ref m);
     }
 
     private void btnWindow_Click(object sender, EventArgs e)

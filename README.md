@@ -15,3 +15,4 @@ Simple screenshot utilities for Windows.
 - [ScreenshotTool](https://github.com/DeniedAccessLife/ScreenshotTool)
 - [CaptureScreen](https://github.com/xChivalrouSx/CaptureScreen)
 - [ImageSharp](https://sixlabors.com/products/imagesharp/)
+- [Capture a keyboard keypress in the background](https://stackoverflow.com/questions/15413172/capture-a-keyboard-keypress-in-the-background)

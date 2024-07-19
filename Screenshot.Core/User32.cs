@@ -4,38 +4,52 @@ using System.Runtime.InteropServices;
 
 public static class User32
 {
+    private const string User32Dll = "user32.dll";
+
     public const int SHOWNORMAL = 1;
     public const int SHOWMINIMIZED = 2;
     public const int SHOWMAXIMIZED = 3;
     public const int WM_NCLBUTTONDOWN = 0xA1;
     public const int HTCAPTION = 0x2;
 
-    [DllImport("user32.dll")]
+    public const int ALT = 1;
+    public const int CTRL = 2;
+    public const int META = 3;
+    public const int SHIFT = 4;
+    public const int WIN = 8;
+
+    [DllImport(User32Dll)]
     public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
 
-    [DllImport("user32.dll")]
+    [DllImport(User32Dll)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool SetForegroundWindow(IntPtr hWnd);
 
-    [DllImport("user32.dll")]
+    [DllImport(User32Dll)]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool IsIconic(IntPtr hWnd);
 
-    [DllImport("user32.dll", SetLastError = true)]
+    [DllImport(User32Dll, SetLastError = true)]
     public static extern bool CloseClipboard();
 
-    [DllImport("user32.dll", SetLastError = true)]
+    [DllImport(User32Dll, SetLastError = true)]
     public static extern bool OpenClipboard(IntPtr hWndNewOwner);
 
-    [DllImport("user32.dll")]
+    [DllImport(User32Dll)]
     public static extern bool EmptyClipboard();
 
-    [DllImport("user32.dll")]
+    [DllImport(User32Dll)]
     public static extern IntPtr GetOpenClipboardWindow();
 
-    [DllImport("user32.dll")]
+    [DllImport(User32Dll)]
     public static extern bool ReleaseCapture();
 
-    [DllImport("user32.dll")]
+    [DllImport(User32Dll)]
     public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+    [DllImport(User32Dll)] 
+    public static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
+
+    [DllImport(User32Dll)]
+    public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 }
