@@ -16,3 +16,5 @@ Simple screenshot utilities for Windows.
 - [CaptureScreen](https://github.com/xChivalrouSx/CaptureScreen)
 - [ImageSharp](https://sixlabors.com/products/imagesharp/)
 - [Capture a keyboard keypress in the background](https://stackoverflow.com/questions/15413172/capture-a-keyboard-keypress-in-the-background)
+- [How do you use System.Drawing in .NET Core?](https://www.hanselman.com/blog/how-do-you-use-systemdrawing-in-net-core)
+- [StoryDev 2 Day #1 - Creating the Drawing Canvas](https://www.youtube.com/watch?v=L7kSBRL0cIk)

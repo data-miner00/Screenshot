@@ -18,11 +18,13 @@ public partial class MainWindow : Form
         InitializeComponent();
         this.fileInfoRepository = fileInfoRepository;
 
-        User32.RegisterHotKey(this.Handle, HOTKEY_ID, User32.CTRL, (int) Keys.PrintScreen);
+        User32.RegisterHotKey(this.Handle, HOTKEY_ID, User32.CTRL, (int)Keys.PrintScreen);
     }
 
-    protected override void WndProc(ref Message m) {
-        if (m.Msg == 0x0312 && m.WParam.ToInt32() == HOTKEY_ID) {
+    protected override void WndProc(ref Message m)
+    {
+        if (m.Msg == 0x0312 && m.WParam.ToInt32() == HOTKEY_ID)
+        {
             MessageBox.Show("Clicked!");
         }
         base.WndProc(ref m);
@@ -144,5 +146,10 @@ public partial class MainWindow : Form
         var image = Image.FromStream(fileStream);
 
         new PreviewForm(image).Show();
+    }
+
+    private void btnHelp_Click(object sender, EventArgs e)
+    {
+        new TemporaryWindow().Show();
     }
 }

@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Screenshot.Core.Specialized\Screenshot.Core.Specialized.csproj" />
     <ProjectReference Include="..\Screenshot.Core\Screenshot.Core.csproj" />
   </ItemGroup>
 

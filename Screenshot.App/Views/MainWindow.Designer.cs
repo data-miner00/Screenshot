@@ -138,6 +138,7 @@ partial class MainWindow
         this.btnHelp.Size = new Size(35, 35);
         this.btnHelp.TabIndex = 9;
         this.btnHelp.UseVisualStyleBackColor = false;
+        this.btnHelp.Click += this.btnHelp_Click;
         // 
         // btnSettings
         // 
