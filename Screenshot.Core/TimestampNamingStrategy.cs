@@ -5,13 +5,17 @@ using System;
 /// <summary>
 /// The naming strategy that uses timestamp.
 /// </summary>
-public class TimestampNamingStrategy : IOutputNamingStrategy
+public sealed class TimestampNamingStrategy : IOutputNamingStrategy
 {
     private readonly string fileExtension;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TimestampNamingStrategy"/> class.
+    /// </summary>
+    /// <param name="fileExtension">The file extension.</param>
     public TimestampNamingStrategy(string fileExtension)
     {
-        this.fileExtension = fileExtension;
+        this.fileExtension = Guard.ThrowIfNullOrWhitespace(fileExtension);
     }
 
     /// <inheritdoc/>

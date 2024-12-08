@@ -9,7 +9,7 @@ internal static class Program
     ///  The main entry point for the application.
     /// </summary>
     [STAThread]
-    static void Main()
+    public static void Main()
     {
         var fileInfoRepository = new FileInfoRepository();
 
