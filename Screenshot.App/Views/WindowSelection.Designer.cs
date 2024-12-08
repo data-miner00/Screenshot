@@ -93,6 +93,7 @@ partial class WindowSelection
         this.Controls.Add(this.btnRefresh);
         this.Controls.Add(this.cbxWindowSelector);
         this.Controls.Add(this.label1);
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.Name = "WindowSelection";
         this.Text = "WindowSelection";
         Load += this.WindowSelection_Load;

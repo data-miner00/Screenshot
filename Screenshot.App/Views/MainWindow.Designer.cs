@@ -195,6 +195,7 @@ partial class MainWindow
         this.Controls.Add(this.btnWindow);
         this.Controls.Add(this.lblScreenshotCounts);
         this.Controls.Add(this.btnArea);
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.Name = "MainWindow";
         this.Text = "Screenshot";
         Load += this.MainWindow_Load;

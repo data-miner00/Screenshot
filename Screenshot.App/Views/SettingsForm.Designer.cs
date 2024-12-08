@@ -163,6 +163,7 @@ partial class SettingsForm
         this.Controls.Add(this.groupBox1);
         this.Controls.Add(this.txtOutputFolder);
         this.Controls.Add(this.label1);
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.Name = "SettingsForm";
         this.Text = "Settings";
         Load += this.SettingsForm_Load;

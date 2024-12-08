@@ -88,6 +88,7 @@ partial class FullScreenCapture
         this.Controls.Add(this.tbxDelay);
         this.Controls.Add(this.cbxSelectScreen);
         this.Controls.Add(this.btnCapture);
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.Name = "FullScreenCapture";
         this.Text = "FullScreenCapture";
         Load += this.FullScreenCapture_Load;

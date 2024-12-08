@@ -58,6 +58,7 @@ partial class PreviewForm
         this.ClientSize = new Size(800, 492);
         this.Controls.Add(this.btnSaveAs);
         this.Controls.Add(this.pbxPreview);
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.Name = "PreviewForm";
         this.Text = "PreviewForm";
         ((System.ComponentModel.ISupportInitialize)this.pbxPreview).EndInit();
