@@ -3,23 +3,17 @@
 using Screenshot.App.Properties;
 using Screenshot.Core;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using AppImageFormat = Screenshot.Core.Models.ImageFormat;
 using NamingStrategies = Screenshot.Core.Models.NamingStrategies;
 
-public partial class PreviewForm : Form
+public sealed partial class PreviewForm : Form
 {
-    private readonly NamingStrategies DefaultNamingStrategy = NamingStrategies.Timestamp;
-    private readonly AppImageFormat DefaultImageFileExtension = AppImageFormat.Bmp;
+    private const NamingStrategies DefaultNamingStrategy = NamingStrategies.Timestamp;
+    private const AppImageFormat DefaultImageFileExtension = AppImageFormat.Bmp;
 
     private readonly Settings settings = Settings.Default;
     private readonly IOutputNamingStrategy outputNamingStrategy;
@@ -28,7 +22,8 @@ public partial class PreviewForm : Form
 
     public PreviewForm(Image image)
     {
-        InitializeComponent();
+        this.InitializeComponent();
+
         var strategySetting = this.settings.NamingStrategy;
         var imageFormatSetting = this.settings.DefaultImageFormat;
 
@@ -72,13 +67,15 @@ public partial class PreviewForm : Form
         {
             CheckPathExists = true,
             FileName = "Capture",
-            Filter = "PNG Image(*.png)|*.png|JPG Image(*.jpg)|*.jpg|BMP Image(*.bmp)|*.bmp"
+            Filter = "PNG Image(*.png)|*.png|JPG Image(*.jpg)|*.jpg|BMP Image(*.bmp)|*.bmp",
         };
 
         if (sfd.ShowDialog() == DialogResult.OK)
         {
-            this.pbxPreview.Image.Save(sfd.FileName);
+            this.pbxPreview.Image!.Save(sfd.FileName);
         }
+
+        this.Close();
     }
 
     private static ImageFormat MapToImageFormat(AppImageFormat imageFormat)
