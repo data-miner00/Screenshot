@@ -1,6 +1,20 @@
+![Build Status](https://dev.azure.com/Pkay0164/playground/_apis/build/status/data-miner00.Screenshot?branchName=master)
+
 # Screenshot
 
 Simple screenshot utilities for Windows.
+
+![Application screenshot](demo.jpg)
+
+## Roadmap
+
+- [x] Specific area screenshot
+- [x] Specific window screenshot
+- [x] Full-screen screenshot
+- [ ] Video recording
+- [ ] Video to GIF
+- [ ] Hotkeys
+- [ ] Settings
 
 ## References
 
@@ -18,3 +32,4 @@ Simple screenshot utilities for Windows.
 - [Capture a keyboard keypress in the background](https://stackoverflow.com/questions/15413172/capture-a-keyboard-keypress-in-the-background)
 - [How do you use System.Drawing in .NET Core?](https://www.hanselman.com/blog/how-do-you-use-systemdrawing-in-net-core)
 - [StoryDev 2 Day #1 - Creating the Drawing Canvas](https://www.youtube.com/watch?v=L7kSBRL0cIk)
+- [How to: Create Graphics Objects for Drawing](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/advanced/how-to-create-graphics-objects-for-drawing?view=netframeworkdesktop-4.8)
