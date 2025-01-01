@@ -2,27 +2,30 @@
 
 using Screenshot.Core;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public partial class SelectArea : Form
+/// <summary>
+/// The form to select an area for screenshot.
+/// </summary>
+public sealed partial class SelectArea : Form
 {
     private const string ScreenshotType = "area";
     private const char EscapeKeyChar = (char)27;
     private const char EnterKeyChar = '\r';
 
+    /// <summary>
+    /// The event that raises when screenshot was fired.
+    /// </summary>
     public EventHandler<string>? ScreenshotEvent;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SelectArea"/> class.
+    /// </summary>
     public SelectArea()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         this.FormBorderStyle = FormBorderStyle.None; // no borders
         this.Opacity = .5D; // make trasparent
@@ -55,15 +58,21 @@ public partial class SelectArea : Form
 
     private const int Thickness = 5;
 
-    Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, Thickness); } }
-    Rectangle Left { get { return new Rectangle(0, 0, Thickness, this.ClientSize.Height); } }
-    Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - Thickness, this.ClientSize.Width, Thickness); } }
-    Rectangle Right { get { return new Rectangle(this.ClientSize.Width - Thickness, 0, Thickness, this.ClientSize.Height); } }
-    Rectangle TopLeft { get { return new Rectangle(0, 0, Thickness, Thickness); } }
-    Rectangle TopRight { get { return new Rectangle(this.ClientSize.Width - Thickness, 0, Thickness, Thickness); } }
-    Rectangle BottomLeft { get { return new Rectangle(0, this.ClientSize.Height - Thickness, Thickness, Thickness); } }
-    Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - Thickness, this.ClientSize.Height - Thickness, Thickness, Thickness); } }
+    private Rectangle Top => new Rectangle(0, 0, this.ClientSize.Width, Thickness);
 
+    private Rectangle Left => new Rectangle(0, 0, Thickness, this.ClientSize.Height);
+
+    private Rectangle Bottom => new Rectangle(0, this.ClientSize.Height - Thickness, this.ClientSize.Width, Thickness);
+
+    private Rectangle Right => new Rectangle(this.ClientSize.Width - Thickness, 0, Thickness, this.ClientSize.Height);
+
+    private Rectangle TopLeft => new Rectangle(0, 0, Thickness, Thickness);
+
+    private Rectangle TopRight => new Rectangle(this.ClientSize.Width - Thickness, 0, Thickness, Thickness);
+
+    private Rectangle BottomLeft => new Rectangle(0, this.ClientSize.Height - Thickness, Thickness, Thickness);
+
+    private Rectangle BottomRight => new Rectangle(this.ClientSize.Width - Thickness, this.ClientSize.Height - Thickness, Thickness, Thickness);
 
     protected override void WndProc(ref Message message)
     {
@@ -105,7 +114,7 @@ public partial class SelectArea : Form
                 this.Close();
 
                 var bmp = GetBitmapSection(this.Location.X, this.Location.Y, this.Width, this.Height, this.Size);
-        
+
                 var preview = new PreviewForm(bmp);
                 this.RaiseScreenshotEvent();
                 preview.Show();

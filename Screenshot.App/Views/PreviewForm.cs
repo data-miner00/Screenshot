@@ -20,6 +20,10 @@ public sealed partial class PreviewForm : Form
     private readonly Image image;
     private AppImageFormat currentImageFormat;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PreviewForm"/> class.
+    /// </summary>
+    /// <param name="image">The image to be previewed.</param>
     public PreviewForm(Image image)
     {
         this.InitializeComponent();

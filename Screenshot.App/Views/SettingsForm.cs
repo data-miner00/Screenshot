@@ -3,24 +3,25 @@
 using Screenshot.App.Properties;
 using Screenshot.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Globalization;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public partial class SettingsForm : Form
+/// <summary>
+/// The settings form.
+/// </summary>
+public sealed partial class SettingsForm : Form
 {
     private readonly Settings settings = Settings.Default;
     private readonly TextInfo textInfo = CultureInfo.InvariantCulture.TextInfo;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SettingsForm"/> class.
+    /// </summary>
     public SettingsForm()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         var validNamingStrategies = Enum.GetValues<NamingStrategies>()
             .Where(x => x is not NamingStrategies.None)

@@ -1,28 +1,31 @@
 ﻿namespace Screenshot.App.Views;
 
 using Screenshot.App;
-using Screenshot.Core;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public partial class FullScreenCapture : Form
+/// <summary>
+/// The form for full screen capture.
+/// </summary>
+public sealed partial class FullScreenCapture : Form
 {
     private const string ScreenshotType = "fullscreen";
     private const int DelayInSeconds = 1;
 
+    /// <summary>
+    /// The event that raises when screenshot was fired.
+    /// </summary>
     public EventHandler<string>? ScreenshotEvent;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FullScreenCapture"/> class.
+    /// </summary>
     public FullScreenCapture()
     {
-        InitializeComponent();
+        this.InitializeComponent();
         this.tbxDelay.Text = DelayInSeconds.ToString();
     }
 

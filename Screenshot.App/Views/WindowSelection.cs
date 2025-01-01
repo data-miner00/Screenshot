@@ -1,27 +1,29 @@
 ﻿namespace Screenshot.App.Views;
 
 using Screenshot.App;
-using Screenshot.Core;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-public partial class WindowSelection : Form
+/// <summary>
+/// The selection for window to screenshot.
+/// </summary>
+public sealed partial class WindowSelection : Form
 {
     private const string ScreenshotType = "window";
 
+    /// <summary>
+    /// The event that raises when screenshot was fired.
+    /// </summary>
     public EventHandler<string>? ScreenshotEvent;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="WindowSelection"/> class.
+    /// </summary>
     public WindowSelection()
     {
-        InitializeComponent();
+        this.InitializeComponent();
     }
 
     private void WindowSelection_Load(object sender, EventArgs e)
@@ -36,8 +38,11 @@ public partial class WindowSelection : Form
         {
             window.Refresh();
             if (window.MainWindowHandle != IntPtr.Zero && !string.IsNullOrEmpty(window.MainWindowTitle))
+            {
                 windowHandleNames.Add(window.ProcessName);
+            }
         }
+
         return windowHandleNames;
     }
 

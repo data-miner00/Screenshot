@@ -5,28 +5,36 @@ using Screenshot.Core;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-public partial class MainWindow : Form
+/// <summary>
+/// The main form.
+/// </summary>
+public sealed partial class MainWindow : Form
 {
+    private const int HotKeyId = 1;
+
     private readonly Settings settings = Settings.Default;
-    private readonly string ScreenshotsFolder = Settings.Default.OutputFolderPath;
+    private readonly string screenshotsFolder = Settings.Default.OutputFolderPath;
     private readonly IFileInfoRepository fileInfoRepository;
 
-    private const int HOTKEY_ID = 1;
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainWindow"/> class.
+    /// </summary>
+    /// <param name="fileInfoRepository">The file info repository.</param>
     public MainWindow(IFileInfoRepository fileInfoRepository)
     {
-        InitializeComponent();
+        this.InitializeComponent();
         this.fileInfoRepository = fileInfoRepository;
 
-        User32.RegisterHotKey(this.Handle, HOTKEY_ID, User32.CTRL, (int)Keys.PrintScreen);
+        User32.RegisterHotKey(this.Handle, HotKeyId, User32.CTRL, (int)Keys.PrintScreen);
     }
 
     protected override void WndProc(ref Message m)
     {
-        if (m.Msg == 0x0312 && m.WParam.ToInt32() == HOTKEY_ID)
+        if (m.Msg == 0x0312 && m.WParam.ToInt32() == HotKeyId)
         {
             MessageBox.Show("Clicked!");
         }
+
         base.WndProc(ref m);
     }
 
@@ -113,7 +121,7 @@ public partial class MainWindow : Form
 
     private void LoadScreenshotInfoList()
     {
-        var fileInfo = this.fileInfoRepository.GetFileInfo(this.ScreenshotsFolder);
+        var fileInfo = this.fileInfoRepository.GetFileInfo(this.screenshotsFolder);
         ListViewItemConverter converter = new ListViewItemConverter();
 
         var orderedFileInfo = from info in fileInfo
@@ -140,7 +148,7 @@ public partial class MainWindow : Form
     {
         var selectedScreenshot = this.lstvwScreenshotsHistory.SelectedItems[0].SubItems[1].Text;
 
-        var filePath = $"{this.ScreenshotsFolder}/{selectedScreenshot}";
+        var filePath = $"{this.screenshotsFolder}/{selectedScreenshot}";
 
         var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         var image = Image.FromStream(fileStream);
