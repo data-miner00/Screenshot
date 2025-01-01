@@ -11,6 +11,7 @@ public sealed class FileInfoRepository : IFileInfoRepository
     public FileInfo[] GetFileInfo(string folderPath)
     {
         var directoryInfo = new DirectoryInfo(folderPath);
+        Directory.CreateDirectory(folderPath);
 
         return directoryInfo.GetFiles();
     }
