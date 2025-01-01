@@ -4,7 +4,7 @@
 
 Simple screenshot utilities for Windows.
 
-![Application screenshot](demo.jpg)
+![Application screenshot](demo.png)
 
 ## Roadmap
 
