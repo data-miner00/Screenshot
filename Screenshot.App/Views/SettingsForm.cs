@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 /// <summary>
 /// The settings form.
@@ -85,5 +86,24 @@ public sealed partial class SettingsForm : Form
     private void cbxFileExtension_SelectedIndexChanged(object sender, EventArgs e)
     {
         this.settings["DefaultImageFormat"] = this.cbxFileExtension.SelectedItem;
+    }
+
+    private void btnOpenFolder_Click(object sender, EventArgs e)
+    {
+        var folderPath = this.txtOutputFolder.Text;
+
+        if (string.IsNullOrEmpty(folderPath))
+        {
+            MessageBox.Show("Folder path cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        if (!Directory.Exists(folderPath))
+        {
+            MessageBox.Show("Folder path does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        Process.Start("explorer.exe", folderPath);
     }
 }

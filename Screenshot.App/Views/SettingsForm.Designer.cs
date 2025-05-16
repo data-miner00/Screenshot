@@ -39,6 +39,7 @@ partial class SettingsForm
         this.cbxSaveAs = new CheckBox();
         this.cbxAutosave = new CheckBox();
         this.btnSaveSettings = new Button();
+        this.btnOpenFolder = new Button();
         this.groupBox1.SuspendLayout();
         this.SuspendLayout();
         // 
@@ -55,7 +56,7 @@ partial class SettingsForm
         // 
         this.txtOutputFolder.Location = new Point(12, 38);
         this.txtOutputFolder.Name = "txtOutputFolder";
-        this.txtOutputFolder.Size = new Size(242, 23);
+        this.txtOutputFolder.Size = new Size(174, 23);
         this.txtOutputFolder.TabIndex = 1;
         this.txtOutputFolder.TextChanged += this.txtOutputFolder_TextChanged;
         // 
@@ -154,11 +155,22 @@ partial class SettingsForm
         this.btnSaveSettings.UseVisualStyleBackColor = true;
         this.btnSaveSettings.Click += this.btnSaveSettings_Click;
         // 
+        // btnOpenFolder
+        // 
+        this.btnOpenFolder.Location = new Point(192, 38);
+        this.btnOpenFolder.Name = "btnOpenFolder";
+        this.btnOpenFolder.Size = new Size(75, 23);
+        this.btnOpenFolder.TabIndex = 8;
+        this.btnOpenFolder.Text = "Open";
+        this.btnOpenFolder.UseVisualStyleBackColor = true;
+        this.btnOpenFolder.Click += this.btnOpenFolder_Click;
+        // 
         // SettingsForm
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
         this.ClientSize = new Size(277, 354);
+        this.Controls.Add(this.btnOpenFolder);
         this.Controls.Add(this.btnSaveSettings);
         this.Controls.Add(this.groupBox1);
         this.Controls.Add(this.txtOutputFolder);
@@ -188,4 +200,5 @@ partial class SettingsForm
     private Button btnSaveSettings;
     private ComboBox cbxFileExtension;
     private Label label5;
+    private Button btnOpenFolder;
 }
