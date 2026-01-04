@@ -44,6 +44,7 @@ partial class TemporaryWindow
         this.AutoScaleMode = AutoScaleMode.Font;
         this.ClientSize = new Size(800, 450);
         this.Controls.Add(this.canvas1);
+        this.FormBorderStyle = FormBorderStyle.FixedSingle;
         this.Name = "TemporaryWindow";
         this.Text = "TemporaryWindow";
         this.ResumeLayout(false);
