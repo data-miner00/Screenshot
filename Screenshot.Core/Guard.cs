@@ -19,7 +19,7 @@ public static class Guard
     /// <param name="paramName">The name of the object.</param>
     /// <returns>The object itself.</returns>
     /// <exception cref="ArgumentException">Throws when .</exception>
-    public static T ThrowIfNull<T>(T obj, [CallerArgumentExpression(nameof(obj))] string? paramName = null)
+    public static T ThrowIfNull<T>(T? obj, [CallerArgumentExpression(nameof(obj))] string? paramName = null)
         where T : class
     {
         if (obj is null)
