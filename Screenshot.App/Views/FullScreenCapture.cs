@@ -50,8 +50,8 @@ public sealed partial class FullScreenCapture : Form
         this.RaiseScreenshotEvent();
 
         await Task.Delay(1000);
-        this.Show();
-        preview.Show();
+        await this.ShowAsync();
+        await preview.ShowAsync();
     }
 
     private void RaiseScreenshotEvent()

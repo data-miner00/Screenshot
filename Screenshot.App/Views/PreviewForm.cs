@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using AppImageFormat = Screenshot.Core.Models.ImageFormat;
 using NamingStrategies = Screenshot.Core.Models.NamingStrategies;
 
+/// <summary>
+/// The form for previewing screenshot.
+/// </summary>
 public sealed partial class PreviewForm : Form
 {
     private const NamingStrategies DefaultNamingStrategy = NamingStrategies.Timestamp;
@@ -18,7 +21,7 @@ public sealed partial class PreviewForm : Form
     private readonly Settings settings = Settings.Default;
     private readonly IOutputNamingStrategy outputNamingStrategy;
     private readonly Image image;
-    private AppImageFormat currentImageFormat;
+    private readonly AppImageFormat currentImageFormat;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="PreviewForm"/> class.
@@ -54,6 +57,19 @@ public sealed partial class PreviewForm : Form
         this.pbxPreview.Image = image;
     }
 
+    private static ImageFormat MapToImageFormat(AppImageFormat imageFormat)
+    {
+        return imageFormat switch
+        {
+            AppImageFormat.Png => ImageFormat.Png,
+            AppImageFormat.Jpg or
+            AppImageFormat.Jpeg => ImageFormat.Jpeg,
+            AppImageFormat.None or
+            AppImageFormat.Bmp => ImageFormat.Bmp,
+            _ => throw new NotImplementedException(),
+        };
+    }
+
     private void SaveScreenshot()
     {
         var settingFolderPath = this.settings.OutputFolderPath;
@@ -80,18 +96,5 @@ public sealed partial class PreviewForm : Form
         }
 
         this.Close();
-    }
-
-    private static ImageFormat MapToImageFormat(AppImageFormat imageFormat)
-    {
-        return imageFormat switch
-        {
-            AppImageFormat.Png => ImageFormat.Png,
-            AppImageFormat.Jpg or
-            AppImageFormat.Jpeg => ImageFormat.Jpeg,
-            AppImageFormat.None or
-            AppImageFormat.Bmp => ImageFormat.Bmp,
-            _ => throw new NotImplementedException(),
-        };
     }
 }

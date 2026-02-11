@@ -1,28 +1,24 @@
 ﻿namespace Screenshot.App;
 
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Screenshot.Core.Specialized;
 
 public partial class Canvas : UserControl
 {
-    private readonly IList<IDrawable> drawables = new List<IDrawable>();
+    private readonly List<IDrawable> drawables = [];
     private Point previousMouseLocation;
     private IDrawable? previousSelectedObject;
     private bool isMouseDown;
+    private object? selectedObject;
 
-    public object? selectedObject;
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Canvas"/> class.
+    /// </summary>
     public Canvas()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         this.SetStyle(ControlStyles.DoubleBuffer, true);
@@ -38,7 +34,7 @@ public partial class Canvas : UserControl
 
     private void Canvas_Paint(object sender, PaintEventArgs e)
     {
-        foreach (var drawable in drawables)
+        foreach (var drawable in this.drawables)
         {
             drawable.Draw(e.Graphics);
         }
@@ -46,7 +42,7 @@ public partial class Canvas : UserControl
 
     private GDIObject? GetObjectAtPoint(Point point)
     {
-        foreach (var drawable in drawables)
+        foreach (var drawable in this.drawables)
         {
             if (drawable is GDIObject obj)
             {
@@ -81,7 +77,7 @@ public partial class Canvas : UserControl
 
     private void Canvas_MouseMove(object sender, MouseEventArgs e)
     {
-        var obj = this.GetObjectAtPoint((Point)e.Location);
+        var obj = this.GetObjectAtPoint(e.Location);
         if (obj is not null)
         {
             this.Cursor = Cursors.SizeAll;
