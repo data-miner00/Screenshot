@@ -6,6 +6,8 @@ Simple screenshot utilities for Windows.
 
 ![Application screenshot](demo.png)
 
+The entry point is `Screenshot.App` using WinForms.
+
 ## Roadmap
 
 - [x] Specific area screenshot
@@ -15,9 +17,13 @@ Simple screenshot utilities for Windows.
 - [ ] Video to GIF
 - [ ] Hotkeys
 - [ ] Settings
+- [ ] Drawing capability
+- [ ] Publish artifacts
+- [ ] Move code to `src` folder
 
 ## References
 
+- [ShareX](https://getsharex.com/)
 - [ScreenshotDemo](https://github.com/BlueHippoGithub/ScreenshotDemo)
 - [C# Screenshot Utility to Capture a Portion of the Screen](https://nishanc.medium.com/c-screenshot-utility-to-capture-a-portion-of-the-screen-489ddceeee49)
 - [Screenshot GitHub](https://github.com/nishanc/csharp-screenshot-winforms)
